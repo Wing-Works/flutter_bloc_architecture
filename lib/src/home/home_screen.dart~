@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clean_architecture/core/base/base_widget/stateful/base_stateful_widget.dart';
 import 'package:flutter_clean_architecture/core/base/base_widget/stateless/base_stateless_widget.dart';
 import 'package:flutter_clean_architecture/core/di/di.dart';
 import 'package:flutter_clean_architecture/src/home/bloc/home_bloc.dart';

@@ -1,0 +1,41 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clean_architecture/core/base/base_widget/scaffold/common_scaffold.dart';
+import 'package:flutter_clean_architecture/core/base/base_widget/scaffold/scaffold_wrapper.dart';
+
+/// Abstract class that extends [StatelessWidget] and provides a base structure for stateless widgets
+/// that use a [Bloc] for state management.
+///
+/// The class ensures that each extending widget provides its own [Bloc] and a [build] method.
+/// It also provides a default implementation for creating a [Scaffold] with an optional [AppBar].
+///
+/// [Bloc] is a generic type that must extend [BlocBase].
+abstract class StatelessBase<Bloc extends BlocBase> extends StatelessWidget
+    with ScaffoldWrapper<Bloc> {
+  /// Constructor for [StatelessBase].
+  const StatelessBase({super.key});
+
+  /// Must be overridden by subclasses to provide the [Bloc] instance.
+  @mustCallSuper
+  @protected
+  Bloc get bloc;
+
+  /// Builds the widget tree.
+  ///
+  /// Wraps the child widget with a [BlocProvider] to provide the [Bloc] to its subtree.
+  /// Uses [CommonScaffold] as the root widget.
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider<Bloc>(
+      create: (context) => bloc,
+      child: Scaffold(
+        body: buildContent(context, bloc),
+      ),
+    );
+  }
+
+  /// Disposes resources if needed.
+  ///
+  /// Subclasses can override this method to perform cleanup.
+  void dispose() {}
+}
