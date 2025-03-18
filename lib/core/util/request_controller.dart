@@ -7,12 +7,12 @@ mixin RequestController {
     required void Function(T) onSuccess,
     void Function(BaseError)? onFailure,
   }) async {
-    await createCall.execute(params).then((value) {
-      value.fold((error) {
-        onFailure?.call(error);
-      }, (data) {
-        onSuccess(data);
-      });
-    });
+    final result = await createCall.execute(params);
+
+    if (result case (null, T data)) {
+      onSuccess(data);
+    } else if (result case (NetworkError error, null)) {
+      onFailure?.call(error);
+    }
   }
 }
