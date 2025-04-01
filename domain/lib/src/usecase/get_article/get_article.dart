@@ -3,7 +3,7 @@ import 'package:domain/src/model/error/network_error.dart';
 import 'package:domain/src/repository/article_repository/article_repository.dart';
 import 'package:domain/src/usecase/base/base_usecase.dart';
 import 'package:domain/src/usecase/base/params.dart';
-import 'package:dartz/dartz.dart';
+// import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -14,7 +14,7 @@ class GetArticleUseCase
   GetArticleUseCase(this._articleRepository);
 
   @override
-  Future<Either<NetworkError, List<ArticleModel>>> execute(
+  Future<(NetworkError?, List<ArticleModel>?)> execute(
     GetArticleParams params,
   ) {
     return _articleRepository.getArticles(params.toJson);
