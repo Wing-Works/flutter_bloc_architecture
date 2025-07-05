@@ -91,11 +91,7 @@ class DataProviderElement<Bloc extends BlocBase> extends ComponentElement {
   Widget build() {
     return BlocProvider<Bloc>(
       create: (context) => _bloc,
-      child: CommonScaffold(
-        scaffoldConfig: widget,
-        context: this,
-        bloc: _bloc,
-      ),
+      child: CommonScaffold(scaffoldConfig: widget, context: this, bloc: _bloc),
     );
   }
 
@@ -108,6 +104,5 @@ class DataProviderElement<Bloc extends BlocBase> extends ComponentElement {
   @override
   void unmount() {
     super.unmount();
-    widget.dispose();
   }
 }

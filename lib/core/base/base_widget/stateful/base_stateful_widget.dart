@@ -23,8 +23,11 @@ abstract class BaseStatefulWidget<Bloc extends BlocBase>
 /// Type parameters:
 /// * [Bloc] - The type of BLoC this state will manage
 /// * [W] - The associated widget type that extends [BaseStatefulWidget]
-abstract class BasePageState<Bloc extends BlocBase,
-        W extends BaseStatefulWidget<Bloc>> extends State<W>
+abstract class BasePageState<
+  Bloc extends BlocBase,
+  W extends BaseStatefulWidget<Bloc>
+>
+    extends State<W>
     with ScaffoldWrapper<Bloc> {
   /// Abstract getter that must be implemented by subclasses to provide
   /// the BLoC instance.

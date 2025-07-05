@@ -14,6 +14,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
     Map<String, dynamic> queries,
   ) {
     return safeApiCall<List<ArticleModel>>(
-        articleDataSource.getArticles(queries));
+      articleDataSource.getArticles(queries),
+    );
   }
 }

@@ -9,9 +9,8 @@ import 'package:injectable/injectable.dart';
 @injectable
 class GetArticleUseCase
     extends BaseUseCase<NetworkError, GetArticleParams, List<ArticleModel>> {
-  final ArticleRepository _articleRepository;
-
   GetArticleUseCase(this._articleRepository);
+  final ArticleRepository _articleRepository;
 
   @override
   Future<(NetworkError?, List<ArticleModel>?)> execute(
@@ -28,6 +27,6 @@ class GetArticleParams extends Params {
 
   @override
   Map<String, dynamic> get toJson {
-    return {"limit": limit};
+    return {'limit': limit};
   }
 }

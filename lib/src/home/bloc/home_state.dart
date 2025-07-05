@@ -6,8 +6,6 @@ class HomeState extends BaseState {
   HomeState({this.list = const <ArticleModel>[]});
 
   HomeState copyWith({List<ArticleModel>? list}) {
-    return HomeState(
-      list: list ?? this.list,
-    );
+    return HomeState(list: list ?? this.list);
   }
 }

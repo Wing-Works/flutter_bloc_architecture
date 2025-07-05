@@ -51,8 +51,10 @@ class CommonScaffold<B extends BlocBase> extends StatelessWidget {
       floatingActionButton: scaffoldConfig.floatingActionButton(context, bloc),
       floatingActionButtonLocation: scaffoldConfig.floatingActionButtonLocation,
       floatingActionButtonAnimator: scaffoldConfig.floatingActionButtonAnimator,
-      persistentFooterButtons:
-          scaffoldConfig.persistentFooterButtons(context, bloc),
+      persistentFooterButtons: scaffoldConfig.persistentFooterButtons(
+        context,
+        bloc,
+      ),
       persistentFooterAlignment: scaffoldConfig.persistentFooterAlignment,
       primary: scaffoldConfig.primary,
       resizeToAvoidBottomInset: scaffoldConfig.resizeToAvoidBottomInset,

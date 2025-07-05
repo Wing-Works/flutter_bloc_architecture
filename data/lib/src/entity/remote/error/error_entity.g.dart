@@ -7,10 +7,10 @@ part of 'error_entity.dart';
 // **************************************************************************
 
 ErrorEntity _$ErrorEntityFromJson(Map<String, dynamic> json) => ErrorEntity(
-      type: json['type'] as String? ?? '',
-      code: (json['code'] as num?)?.toInt() ?? 0,
-      message: json['message'] as String? ?? '',
-    );
+  type: json['type'] as String? ?? '',
+  code: (json['code'] as num?)?.toInt() ?? 0,
+  message: json['message'] as String? ?? '',
+);
 
 Map<String, dynamic> _$ErrorEntityToJson(ErrorEntity instance) =>
     <String, dynamic>{

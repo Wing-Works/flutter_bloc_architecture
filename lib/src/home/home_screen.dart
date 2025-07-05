@@ -6,6 +6,7 @@ import 'package:flutter_clean_architecture/src/home/bloc/home_bloc.dart';
 
 class HomeScreen extends BaseStatelessWidget<HomeBloc> {
   const HomeScreen({super.key});
+
   @override
   HomeBloc get bloc => getIt<HomeBloc>();
 

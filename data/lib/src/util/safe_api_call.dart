@@ -11,24 +11,25 @@ Future<(NetworkError?, T?)> safeApiCall<T>(Future<T> apiCall) async {
   } on DioException catch (e) {
     if (e.response != null) {
       try {
-        final ErrorEntity errorResponseEntity =
-            ErrorEntity.fromJson(e.response!.data);
+        final errorResponseEntity = ErrorEntity.fromJson(
+          e.response!.data as Map<String, dynamic>,
+        );
         return (
           NetworkError(
             httpError: errorResponseEntity.code,
             message: errorResponseEntity.message,
-            cause: Exception("Server Response Error"),
+            cause: Exception('Server Response Error'),
           ),
-          null
+          null,
         );
       } catch (_) {
         return (
           NetworkError(
-            cause: Exception("Server Response Error"),
+            cause: Exception('Server Response Error'),
             httpError: e.response?.statusCode ?? 404,
             message: e.response?.statusMessage ?? '',
           ),
-          null
+          null,
         );
       }
     }
@@ -42,7 +43,7 @@ Future<(NetworkError?, T?)> safeApiCall<T>(Future<T> apiCall) async {
             httpError: 504,
             cause: e,
           ),
-          null
+          null,
         );
       case DioExceptionType.sendTimeout:
         return (
@@ -51,7 +52,7 @@ Future<(NetworkError?, T?)> safeApiCall<T>(Future<T> apiCall) async {
             httpError: 504,
             cause: e,
           ),
-          null
+          null,
         );
       case DioExceptionType.receiveTimeout:
         return (
@@ -60,7 +61,7 @@ Future<(NetworkError?, T?)> safeApiCall<T>(Future<T> apiCall) async {
             httpError: 504,
             cause: e,
           ),
-          null
+          null,
         );
       case DioExceptionType.badCertificate:
       case DioExceptionType.badResponse:
@@ -73,7 +74,7 @@ Future<(NetworkError?, T?)> safeApiCall<T>(Future<T> apiCall) async {
             httpError: 502,
             cause: e,
           ),
-          null
+          null,
         );
     }
   } on IOException catch (e) {
@@ -83,7 +84,7 @@ Future<(NetworkError?, T?)> safeApiCall<T>(Future<T> apiCall) async {
         httpError: 502,
         cause: e,
       ),
-      null
+      null,
     );
   } catch (e) {
     return (
@@ -92,7 +93,7 @@ Future<(NetworkError?, T?)> safeApiCall<T>(Future<T> apiCall) async {
         httpError: 500,
         cause: Exception(e),
       ),
-      null
+      null,
     );
   }
 }
