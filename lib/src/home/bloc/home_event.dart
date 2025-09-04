@@ -4,7 +4,6 @@ part of 'home_bloc.dart';
 sealed class HomeEvent extends BaseEvent {}
 
 class GetArticlesEvent extends HomeEvent {
-  final List<ArticleModel> list;
-
   GetArticlesEvent(this.list);
+  final List<ArticleModel> list;
 }

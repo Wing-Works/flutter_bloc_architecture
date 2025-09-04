@@ -9,7 +9,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 abstract class NetworkModule with NetworkConstant {
   @lazySingleton
   Dio providerDio(List<Interceptor> interceptors) {
-    Dio dio = Dio(BaseOptions(baseUrl: baseUrl));
+    final dio = Dio(BaseOptions(baseUrl: baseUrl));
     dio.interceptors.addAll(interceptors);
     return dio;
   }
@@ -17,10 +17,8 @@ abstract class NetworkModule with NetworkConstant {
   @singleton
   PrettyDioLogger logger() {
     return PrettyDioLogger(
-      request: true,
       requestBody: true,
       requestHeader: true,
-      responseBody: true,
       responseHeader: true,
     );
   }

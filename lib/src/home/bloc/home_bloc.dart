@@ -1,7 +1,7 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_clean_architecture/core/base/bloc/event/base_event.dart';
 import 'package:flutter_clean_architecture/core/base/bloc/bloc_base/bloc_base.dart';
+import 'package:flutter_clean_architecture/core/base/bloc/event/base_event.dart';
 import 'package:flutter_clean_architecture/core/base/bloc/state/base_state.dart';
 import 'package:injectable/injectable.dart';
 

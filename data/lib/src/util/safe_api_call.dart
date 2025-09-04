@@ -1,9 +1,9 @@
 import 'dart:io';
 
+import 'package:dartz/dartz.dart';
 import 'package:data/src/entity/remote/error/error_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
-import 'package:dartz/dartz.dart';
 
 Future<Either<NetworkError, T>> safeApiCall<T>(Future<T> apiCall) async {
   try {
@@ -12,19 +12,18 @@ Future<Either<NetworkError, T>> safeApiCall<T>(Future<T> apiCall) async {
   } on DioException catch (e) {
     if (e.response != null) {
       try {
-        final ErrorEntity errorResponseEntity =
-            ErrorEntity.fromJson(e.response!.data);
+        final errorResponseEntity = ErrorEntity.fromJson(e.response!.data);
         return left(
           NetworkError(
             httpError: errorResponseEntity.code,
             message: errorResponseEntity.message,
-            cause: Exception("Server Response Error"),
+            cause: Exception('Server Response Error'),
           ),
         );
       } catch (_) {
         return left(
           NetworkError(
-            cause: Exception("Server Response Error"),
+            cause: Exception('Server Response Error'),
             httpError: e.response?.statusCode ?? 404,
             message: e.response?.statusMessage ?? '',
           ),

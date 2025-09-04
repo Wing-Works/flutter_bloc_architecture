@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'scaffold_wrapper.dart';
+import 'package:flutter_clean_architecture/core/base/base_widget/scaffold/scaffold_wrapper.dart';
 
 /// A common scaffold widget that wraps the scaffold configuration and provides
 /// a consistent layout structure across the app.
@@ -11,15 +11,6 @@ import 'scaffold_wrapper.dart';
 ///
 /// Type parameter [B] extends [BlocBase] to support bloc-based state management.
 class CommonScaffold<B extends BlocBase> extends StatelessWidget {
-  /// The configuration wrapper that provides all scaffold-related settings and builders
-  final ScaffoldWrapper<B> scaffoldConfig;
-
-  /// The build context used for widget tree construction
-  final BuildContext context;
-
-  /// The bloc instance used for state management
-  final B bloc;
-
   /// Creates a [CommonScaffold] widget.
   ///
   /// Requires a [scaffoldConfig] to define the scaffold's structure and behavior,
@@ -33,6 +24,15 @@ class CommonScaffold<B extends BlocBase> extends StatelessWidget {
     required this.bloc,
     super.key,
   });
+
+  /// The configuration wrapper that provides all scaffold-related settings and builders
+  final ScaffoldWrapper<B> scaffoldConfig;
+
+  /// The build context used for widget tree construction
+  final BuildContext context;
+
+  /// The bloc instance used for state management
+  final B bloc;
 
   @override
   Widget build(BuildContext context) {

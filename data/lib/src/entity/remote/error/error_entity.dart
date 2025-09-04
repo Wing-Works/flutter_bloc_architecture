@@ -10,13 +10,13 @@ class ErrorEntity {
     this.message = '',
   });
 
-  int code;
-  String type;
-  String message;
-
   factory ErrorEntity.fromJson(Map<String, dynamic> json) {
     return _$ErrorEntityFromJson(json);
   }
+
+  int code;
+  String type;
+  String message;
 
   Map<String, dynamic> toJson() => _$ErrorEntityToJson(this);
 }

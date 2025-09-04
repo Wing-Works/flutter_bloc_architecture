@@ -4,14 +4,6 @@ part 'article_model.g.dart';
 
 @JsonSerializable()
 class ArticleModel {
-  final int id;
-  final String title;
-  final double price;
-  final String description;
-  final String category;
-  final String image;
-  final Rating rating;
-
   ArticleModel({
     required this.id,
     required this.title,
@@ -24,19 +16,25 @@ class ArticleModel {
 
   factory ArticleModel.fromJson(Map<String, dynamic> json) =>
       _$ArticleModelFromJson(json);
+  final int id;
+  final String title;
+  final double price;
+  final String description;
+  final String category;
+  final String image;
+  final Rating rating;
   Map<String, dynamic> toJson() => _$ArticleModelToJson(this);
 }
 
 @JsonSerializable()
 class Rating {
-  final double rate;
-  final int count;
-
   Rating({
     required this.rate,
     required this.count,
   });
 
   factory Rating.fromJson(Map<String, dynamic> json) => _$RatingFromJson(json);
+  final double rate;
+  final int count;
   Map<String, dynamic> toJson() => _$RatingToJson(this);
 }
