@@ -1,3 +1,4 @@
+import 'package:data/src/entity/remote/article/article_entity.dart';
 import 'package:data/src/util/network_constant.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
@@ -12,7 +13,7 @@ abstract class RetrofitService {
   }
 
   @GET(NetworkConstant.products)
-  Future<List<ArticleModel>> getArticles(
+  Future<ArticleEntity> getArticles(
     @Queries() Map<String, dynamic> queryParameters,
   );
 }

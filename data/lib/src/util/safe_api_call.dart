@@ -5,14 +5,19 @@ import 'package:data/src/entity/remote/error/error_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 
-Future<Either<NetworkError, T>> safeApiCall<T>(Future<T> apiCall) async {
+Future<Either<NetworkError, S>> safeApiCall<T, S>(
+  Future<T> apiCall, {
+  required S Function(T) onTransform,
+}) async {
   try {
     final response = await apiCall;
-    return right(response);
+    return right(onTransform(response));
   } on DioException catch (e) {
     if (e.response != null) {
       try {
-        final errorResponseEntity = ErrorEntity.fromJson(e.response!.data);
+        final errorResponseEntity = ErrorEntity.fromJson(
+          e.response!.data as Map<String, dynamic>,
+        );
         return left(
           NetworkError(
             httpError: errorResponseEntity.code,
@@ -71,20 +76,10 @@ Future<Either<NetworkError, T>> safeApiCall<T>(Future<T> apiCall) async {
         );
     }
   } on IOException catch (e) {
-    return left(
-      NetworkError(
-        message: e.toString(),
-        httpError: 502,
-        cause: e,
-      ),
-    );
+    return left(NetworkError(message: e.toString(), httpError: 502, cause: e));
   } catch (e) {
     return left(
-      NetworkError(
-        message: e.toString(),
-        httpError: 500,
-        cause: Exception(e),
-      ),
+      NetworkError(message: e.toString(), httpError: 500, cause: Exception(e)),
     );
   }
 }

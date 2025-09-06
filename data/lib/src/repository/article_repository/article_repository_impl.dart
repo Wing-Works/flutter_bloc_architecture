@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:data/src/entity/remote/article/article_entity.dart';
 import 'package:data/src/source/article_data_source/article_ds.dart';
 import 'package:data/src/util/safe_api_call.dart';
 import 'package:domain/domain.dart';
@@ -14,8 +15,11 @@ class ArticleRepositoryImpl implements ArticleRepository {
   Future<Either<NetworkError, List<ArticleModel>>> getArticles(
     Map<String, dynamic> queries,
   ) {
-    return safeApiCall<List<ArticleModel>>(
+    return safeApiCall<ArticleEntity, List<ArticleModel>>(
       articleDataSource.getArticles(queries),
+      onTransform: (d) {
+        return d.transform();
+      },
     );
   }
 }
