@@ -11,6 +11,8 @@ mixin ScaffoldWrapper<B extends BlocBase> {
   ///
   /// [context] The build context
   /// [bloc] The BLoC instance associated with this view
+  @mustCallSuper
+  @protected
   Widget buildView(BuildContext context, B bloc);
 
   /// Builds the app bar for the scaffold
@@ -111,4 +113,37 @@ mixin ScaffoldWrapper<B extends BlocBase> {
 
   /// Whether the end drawer can be opened with a drag gesture
   bool get endDrawerEnableOpenDragGesture => true;
+
+  Widget buildBody(BuildContext context, B bloc) {
+    return Scaffold(
+      key: scaffoldKey,
+      appBar: buildAppbar(context, bloc),
+      backgroundColor: backgroundColor,
+      drawer: drawer(context, bloc),
+      onDrawerChanged: onDrawerChanged,
+      endDrawer: endDrawer(context, bloc),
+      onEndDrawerChanged: onEndDrawerChanged,
+      extendBody: extendBody,
+      extendBodyBehindAppBar: extendBodyBehindAppBar,
+      bottomNavigationBar: bottomNavigationBar(context, bloc),
+      bottomSheet: bottomSheet(context, bloc),
+      floatingActionButton: floatingActionButton(context, bloc),
+      floatingActionButtonLocation: floatingActionButtonLocation,
+      floatingActionButtonAnimator: floatingActionButtonAnimator,
+      persistentFooterButtons: persistentFooterButtons(context, bloc),
+      persistentFooterAlignment: persistentFooterAlignment,
+      primary: primary,
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+      restorationId: restorationId,
+      drawerScrimColor: drawerScrimColor,
+      drawerEdgeDragWidth: drawerEdgeDragWidth,
+      drawerDragStartBehavior: drawerDragStartBehavior,
+      drawerEnableOpenDragGesture: drawerEnableOpenDragGesture,
+      endDrawerEnableOpenDragGesture: endDrawerEnableOpenDragGesture,
+      body: BlocProvider<B>(
+        create: (context) => bloc,
+        child: buildView(context, bloc),
+      ),
+    );
+  }
 }

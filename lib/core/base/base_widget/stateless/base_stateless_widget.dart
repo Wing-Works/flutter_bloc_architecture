@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_architecture/core/base/base_widget/scaffold/common_scaffold.dart';
 import 'package:flutter_clean_architecture/core/base/base_widget/scaffold/scaffold_wrapper.dart';
 
 /// A base widget class for creating stateless screens with integrated BLoC pattern support.
@@ -27,20 +26,13 @@ abstract class BaseStatelessWidget<Bloc extends BlocBase> extends Widget
   @protected
   Bloc get bloc;
 
-  /// Called when this widget is first initialized in the widget tree.
-  ///
-  /// Override this method to perform initialization tasks such as:
-  /// * Setting up initial state
-  /// * Subscribing to streams
-  /// * Initializing controllers
-  void initState() {}
-
   /// Creates the specialized element for managing this widget.
   ///
   /// Do not override this method as it is essential for proper BLoC integration.
   @override
-  DataProviderElement<Bloc> createElement() =>
-      DataProviderElement<Bloc>(this, bloc);
+  DataProviderElement<Bloc> createElement() {
+    return DataProviderElement<Bloc>(this, bloc);
+  }
 
   /// Performs cleanup when this widget is removed from the tree.
   ///
@@ -75,12 +67,6 @@ class DataProviderElement<Bloc extends BlocBase> extends ComponentElement {
   @override
   late final BaseStatelessWidget widget = super.widget as BaseStatelessWidget;
 
-  @override
-  void mount(Element? parent, Object? newSlot) {
-    super.mount(parent, newSlot);
-    widget.initState();
-  }
-
   /// Constructs the widget subtree with BLoC integration and scaffold structure.
   ///
   /// Creates a widget hierarchy that:
@@ -89,14 +75,7 @@ class DataProviderElement<Bloc extends BlocBase> extends ComponentElement {
   /// 3. Maintains proper widget lifecycle
   @override
   Widget build() {
-    return BlocProvider<Bloc>(
-      create: (context) => _bloc,
-      child: CommonScaffold(
-        scaffoldConfig: widget,
-        context: this,
-        bloc: _bloc,
-      ),
-    );
+    return widget.buildBody(this, _bloc);
   }
 
   /// Handles proper cleanup when this element is removed from the tree.

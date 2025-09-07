@@ -27,7 +27,7 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.factory<_i141.HomeBloc>(
-        () => _i141.HomeBloc(gh<_i494.GetArticleUseCase>()));
+        () => _i141.HomeBloc(gh<_i494.GetProductListUseCase>()));
     return this;
   }
 }

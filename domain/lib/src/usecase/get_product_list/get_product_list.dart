@@ -1,19 +1,20 @@
 import 'package:dartz/dartz.dart';
-import 'package:domain/src/model/article/article_model.dart';
 import 'package:domain/src/model/error/network_error.dart';
-import 'package:domain/src/repository/article_repository/article_repository.dart';
+import 'package:domain/src/model/product_list/product_model.dart';
+import 'package:domain/src/repository/product_repository/product_repository.dart';
 import 'package:domain/src/usecase/base/base_usecase.dart';
 import 'package:domain/src/usecase/base/params.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class GetArticleUseCase
-    extends BaseUseCase<NetworkError, GetArticleParams, List<ArticleModel>> {
-  GetArticleUseCase(this._articleRepository);
-  final ArticleRepository _articleRepository;
+class GetProductListUseCase
+    extends BaseUseCase<GetArticleParams, List<ProductModel>> {
+  GetProductListUseCase(this._articleRepository);
+
+  final ProductRepository _articleRepository;
 
   @override
-  Future<Either<NetworkError, List<ArticleModel>>> execute(
+  Future<Either<NetworkError, List<ProductModel>>> execute(
     GetArticleParams params,
   ) {
     return _articleRepository.getArticles(params.toJson);

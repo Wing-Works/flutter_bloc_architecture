@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_architecture/core/base/base_widget/scaffold/common_scaffold.dart';
 import 'package:flutter_clean_architecture/core/base/base_widget/scaffold/scaffold_wrapper.dart';
 
 /// Base widget class that all stateful pages should inherit from.
@@ -46,13 +45,6 @@ abstract class BasePageState<Bloc extends BlocBase,
   /// BLoC access and consistent scaffold structure.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<Bloc>(
-      create: (context) => _bloc,
-      child: CommonScaffold(
-        scaffoldConfig: this,
-        context: context,
-        bloc: _bloc,
-      ),
-    );
+    return buildBody(context, bloc);
   }
 }

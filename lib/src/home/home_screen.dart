@@ -4,6 +4,8 @@ import 'package:flutter_clean_architecture/core/base/base_widget/stateless/base_
 import 'package:flutter_clean_architecture/core/di/di.dart';
 import 'package:flutter_clean_architecture/src/home/bloc/home_bloc.dart';
 import 'package:flutter_clean_architecture/src/home/widgets/item_card_widget.dart';
+import 'package:flutter_clean_architecture/src/widget/render/gap.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeScreen extends BaseStatelessWidget<HomeBloc> {
   const HomeScreen({super.key});
@@ -15,6 +17,14 @@ class HomeScreen extends BaseStatelessWidget<HomeBloc> {
   PreferredSizeWidget? buildAppbar(BuildContext context, HomeBloc bloc) {
     return AppBar(
       title: const Text('Home Screen', style: TextStyle(color: Colors.white)),
+      centerTitle: true,
+      leading: GestureDetector(
+        onTap: () => Navigator.pop(context),
+        child: const Icon(
+          Icons.arrow_back_ios,
+          color: Colors.white,
+        ),
+      ),
       actions: [
         IconButton(
           onPressed: () {},
@@ -29,14 +39,11 @@ class HomeScreen extends BaseStatelessWidget<HomeBloc> {
   }
 
   @override
-  Color? get backgroundColor => Colors.grey[100];
-
-  @override
   Widget buildView(BuildContext context, HomeBloc model) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (_, state) {
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 12).w,
           child: ListView.separated(
             itemCount: state.list.length,
             itemBuilder: (_, index) {
@@ -47,7 +54,7 @@ class HomeScreen extends BaseStatelessWidget<HomeBloc> {
               );
             },
             separatorBuilder: (_, __) {
-              return const SizedBox(height: 12);
+              return const Gap.height(12);
             },
           ),
         );

@@ -20,7 +20,7 @@ class _RetrofitService implements RetrofitService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<ArticleEntity> getArticles(
+  Future<ProductEntity> getProductList(
     Map<String, dynamic> queryParameters,
   ) async {
     final _extra = <String, dynamic>{};
@@ -28,7 +28,7 @@ class _RetrofitService implements RetrofitService {
     queryParameters.addAll(queryParameters);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ArticleEntity>(
+    final _options = _setStreamType<ProductEntity>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -39,9 +39,9 @@ class _RetrofitService implements RetrofitService {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ArticleEntity _value;
+    late ProductEntity _value;
     try {
-      _value = ArticleEntity.fromJson(_result.data!);
+      _value = ProductEntity.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

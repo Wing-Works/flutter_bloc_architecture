@@ -4,11 +4,7 @@ part 'error_entity.g.dart';
 
 @JsonSerializable()
 class ErrorEntity {
-  ErrorEntity({
-    this.type = '',
-    this.code = 0,
-    this.message = '',
-  });
+  ErrorEntity({this.type = '', this.code = 0, this.message = ''});
 
   factory ErrorEntity.fromJson(Map<String, dynamic> json) {
     return _$ErrorEntityFromJson(json);

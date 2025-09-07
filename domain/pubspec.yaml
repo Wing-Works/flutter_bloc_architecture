@@ -8,11 +8,14 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+
   dartz:
     git:
       url: https://github.com/rahul-gola/dartz.git
+
   flutter:
     sdk: flutter
+
   get_it: ^8.2.0
   injectable: ^2.5.1
   json_annotation: ^4.9.0
@@ -23,4 +26,4 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^6.0.0
   injectable_generator: ^2.8.1
-  json_serializable: ^6.9.0
+  json_serializable: ^6.11.1
