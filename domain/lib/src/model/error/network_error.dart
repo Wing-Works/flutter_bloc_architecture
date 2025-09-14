@@ -1,15 +1,19 @@
 import 'package:domain/src/model/error/base_error.dart';
-import 'package:domain/src/model/error/error_info.dart';
 
 class NetworkError extends BaseError {
-  NetworkError({
-    required int httpError,
-    required super.cause,
-    String message = '',
-  }) : super(error: ErrorInfo(code: httpError, message: message));
+  const NetworkError({int httpError = 0, super.cause, super.message = ''})
+    : super(code: httpError);
 
   @override
   String getFriendlyMessage() {
-    return error.message;
+    if (message.isNotEmpty) return message;
+
+    // Provide a sensible default when no message is supplied.
+    return 'Network error (HTTP $code). Please check your connection.';
+  }
+
+  @override
+  String toString() {
+    return '$runtimeType(httpError: $code, message: $message, cause: ${cause ?? 'none'})';
   }
 }

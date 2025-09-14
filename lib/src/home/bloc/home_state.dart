@@ -1,11 +1,11 @@
 part of 'home_bloc.dart';
 
 class HomeState extends BaseState {
-  final List<ArticleModel> list;
+  HomeState({this.list = const <ProductModel>[]});
 
-  HomeState({this.list = const <ArticleModel>[]});
+  final List<ProductModel> list;
 
-  HomeState copyWith({List<ArticleModel>? list}) {
+  HomeState copyWith({List<ProductModel>? list}) {
     return HomeState(list: list ?? this.list);
   }
 }

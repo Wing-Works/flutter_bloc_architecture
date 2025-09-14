@@ -11,11 +11,11 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:data/src/di/network_module.dart' as _i377;
 import 'package:data/src/network/retrofit_service.dart' as _i1066;
-import 'package:data/src/repository/article_repository/article_repository_impl.dart'
-    as _i503;
-import 'package:data/src/source/article_data_source/article_ds.dart' as _i492;
-import 'package:data/src/source/article_data_source/article_ds_impl.dart'
-    as _i634;
+import 'package:data/src/repository/product_repository/product_repository_impl.dart'
+    as _i363;
+import 'package:data/src/source/product_data_source/product_ds.dart' as _i328;
+import 'package:data/src/source/product_data_source/product_ds_impl.dart'
+    as _i69;
 import 'package:data/src/util/api_interceptor.dart' as _i519;
 import 'package:dio/dio.dart' as _i361;
 import 'package:domain/domain.dart' as _i494;
@@ -44,12 +44,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i1066.RetrofitService>(
       () => networkModule.providerRetrofitService(gh<_i361.Dio>()),
     );
-    gh.factory<_i492.ArticleDataSource>(
-      () => _i634.ArticleDataSourceImpl(gh<_i1066.RetrofitService>()),
+    gh.factory<_i328.ProductDataSource>(
+      () => _i69.ArticleDataSourceImpl(gh<_i1066.RetrofitService>()),
     );
-    gh.factory<_i494.ArticleRepository>(
-      () => _i503.ArticleRepositoryImpl(
-        articleDataSource: gh<_i492.ArticleDataSource>(),
+    gh.factory<_i494.ProductRepository>(
+      () => _i363.ProductRepositoryImpl(
+        articleDataSource: gh<_i328.ProductDataSource>(),
       ),
     );
     return this;

@@ -1,11 +1,14 @@
-import 'package:domain/src/model/error/error_info.dart';
-
 abstract class BaseError implements Exception {
-  BaseError({required this.error, required this.cause});
-  final ErrorInfo error;
-  final Exception cause;
+  const BaseError({required this.code, required this.message, this.cause});
 
-  String getFriendlyMessage();
+  final Exception? cause;
+  final int code;
+  final String message;
 
-  void logError() {}
+  String getFriendlyMessage() => message;
+
+  @override
+  String toString() {
+    return '$runtimeType(message: $message, cause: ${cause ?? 'none'})';
+  }
 }

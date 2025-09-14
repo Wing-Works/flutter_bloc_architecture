@@ -30,10 +30,7 @@ abstract class NetworkModule with NetworkConstant {
 
   @singleton
   List<Interceptor> providerInterceptors(ApiInterceptor apiInterceptor) {
-    return <Interceptor>[
-      logger(),
-      apiInterceptor,
-    ];
+    return <Interceptor>[logger(), apiInterceptor];
   }
 
   @lazySingleton

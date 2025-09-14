@@ -1,5 +1,5 @@
 mixin NetworkConstant {
-  final baseUrl = 'https://fakestoreapi.com/';
+  final baseUrl = 'https://dummyjson.com/';
 
   static const String products = 'products';
 }
