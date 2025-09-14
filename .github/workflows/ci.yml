@@ -43,12 +43,12 @@ jobs:
 #        run: flutter test --no-pub
 
       - name: Build APK (release)
-        run: flutter build apk --release
+        run: flutter build apk --release --build-name 1.0.${{ github.run_number }} --build-number ${{ github.run_number }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-release-apk
+          name: app-release-apk-${{ github.run_number }}
           path: build/app/outputs/flutter-apk/app-release.apk
 
   release:
@@ -65,15 +65,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: build-${{ github.sha }}
-          release_name: Build ${{ github.sha }}
+          tag_name: build-${{ github.run_number }}
+          release_name: Build #${{ github.run_number }}
           draft: false
           prerelease: true
 
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: app-release-apk
+          name: app-release-apk-${{ github.run_number }}
           path: artifacts
 
       - name: Upload APK to Release
@@ -83,5 +83,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: artifacts/app-release.apk
-          asset_name: app-release-${{ github.sha }}.apk
+          asset_name: app-release-${{ github.run_number }}.apk
           asset_content_type: application/vnd.android.package-archive

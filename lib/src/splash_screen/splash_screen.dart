@@ -60,7 +60,7 @@ class SplashScreen extends StatelessWidget {
                   ),
                   onPressed: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(
+                      MaterialPageRoute<void>(
                         builder: (context) => const HomeScreen(),
                       ),
                     );

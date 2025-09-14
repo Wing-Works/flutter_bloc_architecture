@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 class ApiInterceptor extends InterceptorsWrapper {
   @override
-  Future onRequest(
+  Future<void> onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {

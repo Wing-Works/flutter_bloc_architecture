@@ -76,7 +76,6 @@ class Dimensions {
   final double height;
   final double depth;
 
-  Map<String, dynamic> toJson() => _$DimensionsToJson(this);
 }
 
 @JsonSerializable()

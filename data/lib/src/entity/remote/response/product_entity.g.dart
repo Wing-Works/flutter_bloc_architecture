@@ -13,5 +13,3 @@ ProductEntity _$ProductEntityFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$ProductEntityToJson(ProductEntity instance) =>
-    <String, dynamic>{'products': instance.products};

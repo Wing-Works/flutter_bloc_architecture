@@ -2,7 +2,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="flutter_bloc_architecture"
+        android:label="Flutter Template"
         android:name="${applicationName}"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher">

@@ -43,31 +43,6 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
   thumbnail: json['thumbnail'] as String? ?? '',
 );
 
-Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title,
-      'description': instance.description,
-      'category': instance.category,
-      'price': instance.price,
-      'discountPercentage': instance.discountPercentage,
-      'rating': instance.rating,
-      'stock': instance.stock,
-      'tags': instance.tags,
-      'brand': instance.brand,
-      'sku': instance.sku,
-      'weight': instance.weight,
-      'dimensions': instance.dimensions,
-      'warrantyInformation': instance.warrantyInformation,
-      'shippingInformation': instance.shippingInformation,
-      'availabilityStatus': instance.availabilityStatus,
-      'reviews': instance.reviews,
-      'returnPolicy': instance.returnPolicy,
-      'minimumOrderQuantity': instance.minimumOrderQuantity,
-      'meta': instance.meta,
-      'images': instance.images,
-      'thumbnail': instance.thumbnail,
-    };
 
 Dimensions _$DimensionsFromJson(Map<String, dynamic> json) => Dimensions(
   width: (json['width'] as num?)?.toDouble(),
@@ -75,12 +50,7 @@ Dimensions _$DimensionsFromJson(Map<String, dynamic> json) => Dimensions(
   depth: (json['depth'] as num?)?.toDouble(),
 );
 
-Map<String, dynamic> _$DimensionsToJson(Dimensions instance) =>
-    <String, dynamic>{
-      'width': instance.width,
-      'height': instance.height,
-      'depth': instance.depth,
-    };
+
 
 Review _$ReviewFromJson(Map<String, dynamic> json) => Review(
   rating: (json['rating'] as num?)?.toInt(),
