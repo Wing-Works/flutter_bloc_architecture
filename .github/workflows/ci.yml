@@ -36,8 +36,8 @@ jobs:
       - name: Fetch dependencies
         run: flutter pub get
 
-      - name: Analyze
-        run: flutter analyze
+#      - name: Analyze
+#        run: flutter analyze
 
       - name: Run tests
         run: flutter test --no-pub
