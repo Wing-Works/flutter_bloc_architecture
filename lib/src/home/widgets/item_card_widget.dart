@@ -5,7 +5,7 @@ class ItemCard extends StatelessWidget {
     required this.title,
     required this.subtitle,
     this.date,
-    this.color = Colors.blueAccent,
+    this.color = Colors.deepPurple,
     this.onTap,
     this.onAction,
     super.key,
@@ -43,7 +43,7 @@ class ItemCard extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 26,
-                backgroundColor: color.withOpacity(0.15),
+                backgroundColor: color.withAlpha(38),
                 child: Text(
                   title.isNotEmpty ? title[0].toUpperCase() : '-',
                   style: TextStyle(

@@ -2,31 +2,31 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_model.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class ProductModel {
   ProductModel({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.category,
-    required this.price,
-    required this.discountPercentage,
-    required this.rating,
-    required this.stock,
-    required this.tags,
-    required this.brand,
-    required this.sku,
-    required this.weight,
-    required this.dimensions,
-    required this.warrantyInformation,
-    required this.shippingInformation,
-    required this.availabilityStatus,
-    required this.reviews,
-    required this.returnPolicy,
-    required this.minimumOrderQuantity,
-    required this.meta,
-    required this.images,
-    required this.thumbnail,
+    this.id = 0,
+    this.title = '',
+    this.description = '',
+    this.category = '',
+    this.price = 0,
+    this.discountPercentage = 0,
+    this.rating = 0,
+    this.stock = 0,
+    this.tags = const <String>[],
+    this.brand='',
+    this.sku='',
+    this.weight=0,
+    this.dimensions,
+    this.warrantyInformation='',
+    this.shippingInformation ='',
+    this.availabilityStatus='',
+    this.reviews= const <Review>[],
+    this.returnPolicy='',
+    this.minimumOrderQuantity =0,
+    this.meta,
+    this.images = const <String>[],
+    this.thumbnail='',
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -45,21 +45,28 @@ class ProductModel {
   final String brand;
   final String sku;
   final double weight;
-  final Dimensions dimensions;
+  final Dimensions? dimensions;
   final String warrantyInformation;
   final String shippingInformation;
   final String availabilityStatus;
   final List<Review> reviews;
   final String returnPolicy;
   final int minimumOrderQuantity;
-  final Meta meta;
+  final Meta? meta;
   final List<String> images;
   final String thumbnail;
 }
 
 @JsonSerializable()
 class Dimensions {
-  Dimensions({required this.width, required this.height, required this.depth});
+  Dimensions({
+    double? width,
+    double? height,
+    double? depth,
+  })
+      : width = width ?? 0,
+        height = height ?? 0,
+        depth = depth ?? 0;
 
   factory Dimensions.fromJson(Map<String, dynamic> json) {
     return _$DimensionsFromJson(json);
@@ -75,12 +82,17 @@ class Dimensions {
 @JsonSerializable()
 class Review {
   Review({
-    required this.rating,
-    required this.comment,
-    required this.date,
-    required this.reviewerName,
-    required this.reviewerEmail,
-  });
+    int? rating,
+    String? comment,
+    DateTime? date,
+    String? reviewerName,
+    String? reviewerEmail,
+  })
+      : rating = rating ?? 0,
+        comment = comment ?? '',
+        date = date ?? DateTime.fromMillisecondsSinceEpoch(0),
+        reviewerName = reviewerName ?? '',
+        reviewerEmail = reviewerEmail ?? '';
 
   factory Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);
   final int rating;
@@ -95,11 +107,15 @@ class Review {
 @JsonSerializable()
 class Meta {
   Meta({
-    required this.createdAt,
-    required this.updatedAt,
-    required this.barcode,
-    required this.qrCode,
-  });
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? barcode,
+    String? qrCode,
+  })
+      : createdAt = createdAt ?? DateTime.fromMillisecondsSinceEpoch(0),
+        updatedAt = updatedAt ?? DateTime.fromMillisecondsSinceEpoch(0),
+        barcode = barcode ?? '',
+        qrCode = qrCode ?? '';
 
   factory Meta.fromJson(Map<String, dynamic> json) => _$MetaFromJson(json);
   final DateTime createdAt;

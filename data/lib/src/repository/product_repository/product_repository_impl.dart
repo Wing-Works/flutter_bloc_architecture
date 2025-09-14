@@ -17,9 +17,6 @@ class ProductRepositoryImpl implements ProductRepository {
   ) {
     final response = safeApiCall<ProductEntity, List<ProductModel>>(
       articleDataSource.getProductList(queries),
-      onTransform: (d) {
-        return d.transform;
-      },
     );
     return response;
   }

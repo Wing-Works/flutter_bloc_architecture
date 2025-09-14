@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/core/base/base_widget/stateless/base_stateless_widget.dart';
@@ -40,14 +41,15 @@ class HomeScreen extends BaseStatelessWidget<HomeBloc> {
 
   @override
   Widget buildView(BuildContext context, HomeBloc model) {
-    return BlocBuilder<HomeBloc, HomeState>(
-      builder: (_, state) {
+    return BlocSelector<HomeBloc, HomeState, List<ProductModel>>(
+      selector: (s) => s.list,
+      builder: (_, list) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12).w,
           child: ListView.separated(
-            itemCount: state.list.length,
+            itemCount: list.length,
             itemBuilder: (_, index) {
-              final item = state.list[index];
+              final item = list[index];
               return ItemCard(
                 title: item.title,
                 subtitle: item.category,

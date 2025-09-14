@@ -2,16 +2,16 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:data/src/entity/remote/error/error_entity.dart';
+import 'package:data/src/util/base_layer_transformer.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 
-Future<Either<NetworkError, S>> safeApiCall<T, S>(
-  Future<T> apiCall, {
-  required S Function(T) onTransform,
-}) async {
+Future<Either<NetworkError, S>>
+safeApiCall<T extends BaseLayerDataTransformer<S>, S>(Future<T> apiCall) async {
   try {
     final response = await apiCall;
-    return right(onTransform(response));
+
+    return right(response.transform);
   } on DioException catch (e) {
     if (e.response != null) {
       try {
