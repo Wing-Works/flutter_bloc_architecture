@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - master
+      - custom_either_package
   workflow_dispatch:
 
 permissions:
