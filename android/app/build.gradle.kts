@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.flutter_bloc_architecture"
+    namespace = "com.example.flutter_clean_architecture"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,14 +21,13 @@ android {
 
     packagingOptions {
         jniLibs {
-            useLegacyPackaging = true // Enabling flag to compress JNI Libs to reduce APK size Ref: https://developer.android.com/studio/releases/gradle-plugin#compress-native-libs-dsl
+            useLegacyPackaging = true
         }
     }
 
-
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.flutter_bloc_architecture"
+        applicationId = "com.example.flutter_clean_architecture"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
@@ -53,6 +52,7 @@ android {
             signingConfig = signingConfigs.getByName("debug")
             isShrinkResources = true
             isMinifyEnabled = true
+            isDebuggable = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

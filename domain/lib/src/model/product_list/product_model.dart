@@ -14,19 +14,19 @@ class ProductModel {
     this.rating = 0,
     this.stock = 0,
     this.tags = const <String>[],
-    this.brand='',
-    this.sku='',
-    this.weight=0,
+    this.brand = '',
+    this.sku = '',
+    this.weight = 0,
     this.dimensions,
-    this.warrantyInformation='',
-    this.shippingInformation ='',
-    this.availabilityStatus='',
-    this.reviews= const <Review>[],
-    this.returnPolicy='',
-    this.minimumOrderQuantity =0,
+    this.warrantyInformation = '',
+    this.shippingInformation = '',
+    this.availabilityStatus = '',
+    this.reviews = const <Review>[],
+    this.returnPolicy = '',
+    this.minimumOrderQuantity = 0,
     this.meta,
     this.images = const <String>[],
-    this.thumbnail='',
+    this.thumbnail = '',
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -59,14 +59,10 @@ class ProductModel {
 
 @JsonSerializable()
 class Dimensions {
-  Dimensions({
-    double? width,
-    double? height,
-    double? depth,
-  })
-      : width = width ?? 0,
-        height = height ?? 0,
-        depth = depth ?? 0;
+  Dimensions({double? width, double? height, double? depth})
+    : width = width ?? 0,
+      height = height ?? 0,
+      depth = depth ?? 0;
 
   factory Dimensions.fromJson(Map<String, dynamic> json) {
     return _$DimensionsFromJson(json);
@@ -75,7 +71,6 @@ class Dimensions {
   final double width;
   final double height;
   final double depth;
-
 }
 
 @JsonSerializable()
@@ -86,12 +81,11 @@ class Review {
     DateTime? date,
     String? reviewerName,
     String? reviewerEmail,
-  })
-      : rating = rating ?? 0,
-        comment = comment ?? '',
-        date = date ?? DateTime.fromMillisecondsSinceEpoch(0),
-        reviewerName = reviewerName ?? '',
-        reviewerEmail = reviewerEmail ?? '';
+  }) : rating = rating ?? 0,
+       comment = comment ?? '',
+       date = date ?? DateTime.fromMillisecondsSinceEpoch(0),
+       reviewerName = reviewerName ?? '',
+       reviewerEmail = reviewerEmail ?? '';
 
   factory Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);
   final int rating;
@@ -110,11 +104,10 @@ class Meta {
     DateTime? updatedAt,
     String? barcode,
     String? qrCode,
-  })
-      : createdAt = createdAt ?? DateTime.fromMillisecondsSinceEpoch(0),
-        updatedAt = updatedAt ?? DateTime.fromMillisecondsSinceEpoch(0),
-        barcode = barcode ?? '',
-        qrCode = qrCode ?? '';
+  }) : createdAt = createdAt ?? DateTime.fromMillisecondsSinceEpoch(0),
+       updatedAt = updatedAt ?? DateTime.fromMillisecondsSinceEpoch(0),
+       barcode = barcode ?? '',
+       qrCode = qrCode ?? '';
 
   factory Meta.fromJson(Map<String, dynamic> json) => _$MetaFromJson(json);
   final DateTime createdAt;

@@ -14,7 +14,7 @@ mixin RequestController {
       value.fold((error) {
         onFailure?.call(error);
         log(''''══════════════════════════════════════════════════════════════════════════════════════════''');
-        log('error: ${ error.message}');
+        log('error: ${error.message}');
         log(''''══════════════════════════════════════════════════════════════════════════════════════════''');
       }, (data) {
         onSuccess(data);
