@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/core/l10n/generated/l10n.dart';
 import 'package:flutter_clean_architecture/core/services/app_service.dart';
-import 'package:flutter_clean_architecture/l10n/app_localizations.dart';
 import 'package:flutter_clean_architecture/src/splash_screen/splash_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

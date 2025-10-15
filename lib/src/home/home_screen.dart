@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/core/base/base_widget/stateless/base_stateless_widget.dart';
 import 'package:flutter_clean_architecture/core/di/di.dart';
+import 'package:flutter_clean_architecture/core/l10n/generated/l10n.dart';
 import 'package:flutter_clean_architecture/src/home/bloc/home_bloc.dart';
 import 'package:flutter_clean_architecture/src/home/widgets/item_card_widget.dart';
 import 'package:flutter_clean_architecture/src/widget/render/gap.dart';
@@ -17,7 +18,10 @@ class HomeScreen extends BaseStatelessWidget<HomeBloc> {
   @override
   PreferredSizeWidget? buildAppbar(BuildContext context, HomeBloc bloc) {
     return AppBar(
-      title: const Text('Home Screen', style: TextStyle(color: Colors.white)),
+      title: Text(
+        AppLocalizations.current.homeScreen,
+        style: const TextStyle(color: Colors.white),
+      ),
       centerTitle: true,
       leading: GestureDetector(
         onTap: () => Navigator.pop(context),
@@ -44,21 +48,19 @@ class HomeScreen extends BaseStatelessWidget<HomeBloc> {
     return BlocSelector<HomeBloc, HomeState, List<ProductModel>>(
       selector: (s) => s.list,
       builder: (_, list) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12).w,
-          child: ListView.separated(
-            itemCount: list.length,
-            itemBuilder: (_, index) {
-              final item = list[index];
-              return ItemCard(
-                title: item.title,
-                subtitle: item.category,
-              );
-            },
-            separatorBuilder: (_, __) {
-              return const Gap.height(12);
-            },
-          ),
+        return ListView.separated(
+          padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 12).r,
+          itemCount: list.length,
+          itemBuilder: (_, index) {
+            final item = list[index];
+            return ItemCard(
+              title: item.title,
+              subtitle: item.category,
+            );
+          },
+          separatorBuilder: (_, __) {
+            return const Gap.height(12);
+          },
         );
       },
     );
