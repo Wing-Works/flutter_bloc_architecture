@@ -1,5 +1,5 @@
-// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format width=80
 
 // **************************************************************************
 // InjectableConfigGenerator
@@ -10,24 +10,20 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:domain/domain.dart' as _i494;
-import 'package:flutter_clean_architecture/src/home/bloc/home_bloc.dart'
-    as _i141;
+import 'package:flutter_bloc_architecture/src/home/bloc/home_bloc.dart' as _i19;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
 extension GetItInjectableX on _i174.GetIt {
-// initializes the registration of main-scope dependencies inside of GetIt
+  // initializes the registration of main-scope dependencies inside of GetIt
   _i174.GetIt init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
   }) {
-    final gh = _i526.GetItHelper(
-      this,
-      environment,
-      environmentFilter,
+    final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    gh.factory<_i19.HomeBloc>(
+      () => _i19.HomeBloc(gh<_i494.GetProductListUseCase>()),
     );
-    gh.factory<_i141.HomeBloc>(
-        () => _i141.HomeBloc(gh<_i494.GetProductListUseCase>()));
     return this;
   }
 }

@@ -2,7 +2,7 @@ include: package:flutter_lints/flutter.yaml
 
 analyzer:
   language:
-    strict-casts: false
+    strict-casts: true
     strict-inference: true
     strict-raw-types: true
 
@@ -16,6 +16,8 @@ analyzer:
     invalid_annotation_target: ignore
 
   exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
     - test/.test_coverage.dart
     - lib/generated_plugin_registrant.dart
 
@@ -26,7 +28,6 @@ linter:
     - always_use_package_imports
     - annotate_overrides
     - avoid_bool_literals_in_conditional_expressions
-    - avoid_catches_without_on_clauses
     - avoid_catching_errors
     - avoid_double_and_int_checks
     - avoid_dynamic_calls
@@ -111,7 +112,7 @@ linter:
     - null_check_on_nullable_type_parameter
     - null_closures
     - omit_local_variable_types
-    - one_member_abstracts
+
     - only_throw_errors
     - overridden_fields
     - package_names

@@ -15,9 +15,8 @@ class ProductRepositoryImpl implements ProductRepository {
   Future<Either<NetworkError, List<ProductModel>>> getArticles(
     Map<String, dynamic> queries,
   ) {
-    final response = safeApiCall<ProductEntity, List<ProductModel>>(
+    return safeApiCall<List<ProductModel>>(
       articleDataSource.getProductList(queries),
     );
-    return response;
   }
 }

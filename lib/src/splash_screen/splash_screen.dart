@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture/src/home/home_screen.dart';
+import 'package:flutter_bloc_architecture/src/home/home_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
+
+  static const routeName = '/';
 
   @override
   Widget build(BuildContext context) {
@@ -59,10 +61,9 @@ class SplashScreen extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute<void>(
-                        builder: (context) => const HomeScreen(),
-                      ),
+                    Navigator.pushReplacementNamed(
+                      context,
+                      HomeScreen.routeName,
                     );
                   },
                   child: const Text('Get Started'),

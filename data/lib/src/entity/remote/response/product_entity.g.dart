@@ -12,4 +12,3 @@ ProductEntity _$ProductEntityFromJson(Map<String, dynamic> json) =>
           .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
-

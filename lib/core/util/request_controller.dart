@@ -11,14 +11,21 @@ mixin RequestController {
     void Function(NetworkError)? onFailure,
   }) async {
     await createCall.execute(params).then((value) {
-      value.fold((error) {
-        onFailure?.call(error);
-        log(''''══════════════════════════════════════════════════════════════════════════════════════════''');
-        log('error: ${ error.message}');
-        log(''''══════════════════════════════════════════════════════════════════════════════════════════''');
-      }, (data) {
-        onSuccess(data);
-      });
+      value.fold(
+        (error) {
+          onFailure?.call(error);
+          log(
+            ''''══════════════════════════════════════════════════════════════════════════════════════════''',
+          );
+          log('error: ${error.message}');
+          log(
+            ''''══════════════════════════════════════════════════════════════════════════════════════════''',
+          );
+        },
+        (data) {
+          onSuccess(data);
+        },
+      );
     });
   }
 }

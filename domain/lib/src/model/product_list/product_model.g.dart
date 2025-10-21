@@ -43,14 +43,11 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
   thumbnail: json['thumbnail'] as String? ?? '',
 );
 
-
 Dimensions _$DimensionsFromJson(Map<String, dynamic> json) => Dimensions(
   width: (json['width'] as num?)?.toDouble(),
   height: (json['height'] as num?)?.toDouble(),
   depth: (json['depth'] as num?)?.toDouble(),
 );
-
-
 
 Review _$ReviewFromJson(Map<String, dynamic> json) => Review(
   rating: (json['rating'] as num?)?.toInt(),
