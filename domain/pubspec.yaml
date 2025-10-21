@@ -9,6 +9,7 @@ environment:
 
 dependencies:
 
+  dart_mappable: ^4.6.1
   dartz:
     git:
       url: https://github.com/rahul-gola/dartz.git
@@ -18,13 +19,12 @@ dependencies:
 
   get_it: ^8.2.0
   injectable: ^2.5.2
-  json_annotation: ^4.9.0
 
 dev_dependencies:
-  build_runner: ^2.9.0
+  build_runner: ^2.10.0
+  dart_mappable_builder: ^4.6.1
   flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
 
   injectable_generator: ^2.9.0
-  json_serializable: ^6.11.1
