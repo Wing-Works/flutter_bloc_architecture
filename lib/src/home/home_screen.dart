@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_architecture/core/base/base_widget/stateful/base_stateful_widget.dart';
 import 'package:flutter_bloc_architecture/core/base/base_widget/stateless/base_stateless_widget.dart';
 import 'package:flutter_bloc_architecture/core/di/di.dart';
+import 'package:flutter_bloc_architecture/core/l10n/generated/l10n.dart';
 import 'package:flutter_bloc_architecture/src/home/bloc/home_bloc.dart';
 import 'package:flutter_bloc_architecture/src/home/widgets/item_card_widget.dart';
 import 'package:flutter_bloc_architecture/src/widget/render/gap.dart';
@@ -19,24 +20,22 @@ class HomeScreen extends BaseStatefulWidget {
 }
 
 class _HomeScreenState extends BasePageState<HomeBloc, HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-    bloc.fetchData();
-  }
 
   @override
   PreferredSizeWidget? buildAppbar(BuildContext context) {
     return AppBar(
-      title: const Text('Home Screen', style: TextStyle(color: Colors.white)),
+      title: Text(
+        AppLocalizations.current.homeScreen,
+        style: const TextStyle(color: Colors.white),
+      ),
       centerTitle: true,
       leading: GestureDetector(
-        onTap: () => Navigator.pop(context),
+        onTap: Navigator.of(context).pop,
         child: const Icon(Icons.arrow_back_ios, color: Colors.white),
       ),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: bloc.fetchData,
           icon: const Icon(Icons.refresh, color: Colors.white),
         ),
       ],
@@ -59,9 +58,7 @@ class _HomeScreenState extends BasePageState<HomeBloc, HomeScreen> {
             final item = list[index];
             return ItemCard(title: item.title, subtitle: item.category);
           },
-          separatorBuilder: (_, _) {
-            return const Gap.height(12);
-          },
+          separatorBuilder: (_, _) => const Gap.height(12),
         );
       },
     );

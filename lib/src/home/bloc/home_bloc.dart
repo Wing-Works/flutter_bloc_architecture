@@ -6,7 +6,6 @@ import 'package:flutter_bloc_architecture/core/base/bloc/state/base_state.dart';
 import 'package:injectable/injectable.dart';
 
 part 'home_event.dart';
-
 part 'home_state.dart';
 
 @injectable
@@ -15,11 +14,11 @@ class HomeBloc extends BlocBase<HomeEvent, HomeState> {
 
   final GetProductListUseCase _getArticleUseCase;
 
-  // @override
-  // void init() {
-  //   super.init();
-  //
-  // }
+  @override
+  void init() {
+    super.init();
+    fetchData();
+  }
 
   @override
   void mapEventToState() {
