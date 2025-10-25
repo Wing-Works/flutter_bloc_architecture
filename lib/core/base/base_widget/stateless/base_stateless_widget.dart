@@ -1,30 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_architecture/core/base/base_widget/scaffold/scaffold_wrapper.dart';
+import 'package:flutter_bloc_architecture/core/base/base_widget/scaffold/scaffold_wrapper.dart';
 
-/// A base widget class for creating stateless screens with integrated BLoC pattern support.
-///
-/// This abstract class serves as a foundation for building stateless UI components that leverage
-/// the BLoC pattern for state management. Key features include:
-///
-/// * Automatic BLoC lifecycle management and dependency injection
-/// * Built-in scaffold and app bar integration via [ScaffoldWrapper]
-/// * Support for initialization and cleanup operations
-/// * Type-safe BLoC instance access
-/// * Automatic resource disposal
 abstract class BaseStatelessWidget<Bloc extends BlocBase> extends Widget
     with ScaffoldWrapper<Bloc> {
   /// Creates a stateless base widget with optional [key].
-  const BaseStatelessWidget({super.key});
+  const BaseStatelessWidget({super.key, required this.bloc});
 
   /// Provides the BLoC instance for state management.
   ///
   /// This getter must be implemented to return a new instance of the BLoC that will
   /// manage this widget's state. The BLoC will be automatically provided to child
   /// widgets via [BlocProvider].
-  @mustCallSuper
-  @protected
-  Bloc get bloc;
+  final Bloc bloc;
 
   /// Creates the specialized element for managing this widget.
   ///

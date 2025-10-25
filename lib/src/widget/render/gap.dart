@@ -10,8 +10,8 @@ class Gap extends SingleChildRenderObjectWidget {
   const Gap.width(double this.width, {super.key, super.child}) : height = null;
 
   const Gap.square({super.key, super.child, double? dimension})
-      : width = dimension,
-        height = dimension;
+    : width = dimension,
+      height = dimension;
 
   final double? width;
 

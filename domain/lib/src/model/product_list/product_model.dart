@@ -1,9 +1,9 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 
-part 'product_model.g.dart';
+part 'product_model.mapper.dart';
 
-@JsonSerializable()
-class ProductModel {
+@MappableClass()
+class ProductModel with ProductModelMappable {
   ProductModel({
     this.id = 0,
     this.title = '',
@@ -29,10 +29,6 @@ class ProductModel {
     this.thumbnail = '',
   });
 
-  factory ProductModel.fromJson(Map<String, dynamic> json) {
-    return _$ProductModelFromJson(json);
-  }
-
   final int id;
   final String title;
   final String description;
@@ -57,24 +53,20 @@ class ProductModel {
   final String thumbnail;
 }
 
-@JsonSerializable()
-class Dimensions {
+@MappableClass()
+class Dimensions with DimensionsMappable {
   Dimensions({double? width, double? height, double? depth})
     : width = width ?? 0,
       height = height ?? 0,
       depth = depth ?? 0;
-
-  factory Dimensions.fromJson(Map<String, dynamic> json) {
-    return _$DimensionsFromJson(json);
-  }
 
   final double width;
   final double height;
   final double depth;
 }
 
-@JsonSerializable()
-class Review {
+@MappableClass()
+class Review with ReviewMappable {
   Review({
     int? rating,
     String? comment,
@@ -87,18 +79,15 @@ class Review {
        reviewerName = reviewerName ?? '',
        reviewerEmail = reviewerEmail ?? '';
 
-  factory Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);
   final int rating;
   final String comment;
   final DateTime date;
   final String reviewerName;
   final String reviewerEmail;
-
-  Map<String, dynamic> toJson() => _$ReviewToJson(this);
 }
 
-@JsonSerializable()
-class Meta {
+@MappableClass()
+class Meta with MetaMappable {
   Meta({
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -109,11 +98,8 @@ class Meta {
        barcode = barcode ?? '',
        qrCode = qrCode ?? '';
 
-  factory Meta.fromJson(Map<String, dynamic> json) => _$MetaFromJson(json);
   final DateTime createdAt;
   final DateTime updatedAt;
   final String barcode;
   final String qrCode;
-
-  Map<String, dynamic> toJson() => _$MetaToJson(this);
 }

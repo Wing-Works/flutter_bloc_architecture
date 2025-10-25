@@ -1,6 +1,6 @@
 {
-    "name": "flutter_clean_architecture",
-    "short_name": "flutter_clean_architecture",
+    "name": "flutter_bloc_architecture",
+    "short_name": "flutter_bloc_architecture",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 ///
 /// This mixin is designed to work with BLoC pattern and provides methods to override
 /// various Scaffold properties and widgets
-mixin ScaffoldWrapper<B extends BlocBase> {
+mixin ScaffoldWrapper<B extends BlocBase<dynamic>> {
   /// Builds the main content view of the scaffold
   ///
   /// [context] The build context
@@ -19,8 +19,7 @@ mixin ScaffoldWrapper<B extends BlocBase> {
   ///
   /// Returns null by default, override to provide custom app bar
   /// [context] The build context
-  /// [bloc] The BLoC instance associated with this view
-  PreferredSizeWidget? buildAppbar(BuildContext context, B bloc) => null;
+  PreferredSizeWidget? buildAppbar(BuildContext context) => null;
 
   /// The key for the scaffold widget
   Key? get scaffoldKey => null;
@@ -31,8 +30,7 @@ mixin ScaffoldWrapper<B extends BlocBase> {
   /// Builds the drawer widget for the scaffold
   ///
   /// [context] The build context
-  /// [bloc] The BLoC instance associated with this view
-  Widget? drawer(BuildContext context, B bloc) => null;
+  Widget? drawer(BuildContext context) => null;
 
   /// Callback when the drawer open state changes
   ///
@@ -42,8 +40,7 @@ mixin ScaffoldWrapper<B extends BlocBase> {
   /// Builds the end drawer widget for the scaffold
   ///
   /// [context] The build context
-  /// [bloc] The BLoC instance associated with this view
-  Widget? endDrawer(BuildContext context, B bloc) => null;
+  Widget? endDrawer(BuildContext context) => null;
 
   /// Callback when the end drawer open state changes
   ///
@@ -59,20 +56,18 @@ mixin ScaffoldWrapper<B extends BlocBase> {
   /// Builds the bottom navigation bar for the scaffold
   ///
   /// [context] The build context
-  /// [bloc] The BLoC instance associated with this view
-  Widget? bottomNavigationBar(BuildContext context, B bloc) => null;
+  Widget? bottomNavigationBar(BuildContext context) => null;
 
   /// Builds the bottom sheet for the scaffold
   ///
   /// [context] The build context
   /// [bloc] The BLoC instance associated with this view
-  Widget? bottomSheet(BuildContext context, B bloc) => null;
+  Widget? bottomSheet(BuildContext context) => null;
 
   /// Builds the floating action button for the scaffold
   ///
   /// [context] The build context
-  /// [bloc] The BLoC instance associated with this view
-  Widget? floatingActionButton(BuildContext context, B bloc) => null;
+  Widget? floatingActionButton(BuildContext context) => null;
 
   /// The location where the floating action button should be positioned
   FloatingActionButtonLocation? get floatingActionButtonLocation => null;
@@ -83,12 +78,12 @@ mixin ScaffoldWrapper<B extends BlocBase> {
   /// Builds the list of persistent footer buttons
   ///
   /// [context] The build context
-  /// [bloc] The BLoC instance associated with this view
-  List<Widget>? persistentFooterButtons(BuildContext context, B bloc) => null;
+  List<Widget>? persistentFooterButtons(BuildContext context) => null;
 
   /// The alignment of the persistent footer buttons
-  AlignmentDirectional get persistentFooterAlignment =>
-      AlignmentDirectional.centerEnd;
+  AlignmentDirectional get persistentFooterAlignment {
+    return AlignmentDirectional.centerEnd;
+  }
 
   /// Whether the scaffold is the primary navigator
   bool get primary => true;
@@ -117,20 +112,20 @@ mixin ScaffoldWrapper<B extends BlocBase> {
   Widget buildBody(BuildContext context, B bloc) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: buildAppbar(context, bloc),
+      appBar: buildAppbar(context),
       backgroundColor: backgroundColor,
-      drawer: drawer(context, bloc),
+      drawer: drawer(context),
       onDrawerChanged: onDrawerChanged,
-      endDrawer: endDrawer(context, bloc),
+      endDrawer: endDrawer(context),
       onEndDrawerChanged: onEndDrawerChanged,
       extendBody: extendBody,
       extendBodyBehindAppBar: extendBodyBehindAppBar,
-      bottomNavigationBar: bottomNavigationBar(context, bloc),
-      bottomSheet: bottomSheet(context, bloc),
-      floatingActionButton: floatingActionButton(context, bloc),
+      bottomNavigationBar: bottomNavigationBar(context),
+      bottomSheet: bottomSheet(context),
+      floatingActionButton: floatingActionButton(context),
       floatingActionButtonLocation: floatingActionButtonLocation,
       floatingActionButtonAnimator: floatingActionButtonAnimator,
-      persistentFooterButtons: persistentFooterButtons(context, bloc),
+      persistentFooterButtons: persistentFooterButtons(context),
       persistentFooterAlignment: persistentFooterAlignment,
       primary: primary,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,

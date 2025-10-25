@@ -6,8 +6,9 @@ import 'package:data/src/util/base_layer_transformer.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 
-Future<Either<NetworkError, S>>
-safeApiCall<T extends BaseLayerDataTransformer<S>, S>(Future<T> apiCall) async {
+Future<Either<NetworkError, S>> safeApiCall<S>(
+  Future<BaseLayerDataTransformer<S>> apiCall,
+) async {
   try {
     final response = await apiCall;
 

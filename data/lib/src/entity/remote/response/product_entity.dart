@@ -1,16 +1,13 @@
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:data/src/util/base_layer_transformer.dart';
 import 'package:domain/domain.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'product_entity.g.dart';
+part 'product_entity.mapper.dart';
 
-@JsonSerializable()
-class ProductEntity extends BaseLayerDataTransformer<List<ProductModel>> {
+@MappableClass()
+class ProductEntity extends BaseLayerDataTransformer<List<ProductModel>>
+    with ProductEntityMappable {
   ProductEntity({required this.products});
-
-  factory ProductEntity.fromJson(Map<String, dynamic> json) {
-    return _$ProductEntityFromJson(json);
-  }
 
   final List<ProductModel> products;
 
