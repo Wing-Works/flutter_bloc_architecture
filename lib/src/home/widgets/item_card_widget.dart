@@ -5,7 +5,7 @@ class ItemCard extends StatelessWidget {
     required this.title,
     required this.subtitle,
     this.date,
-    this.color = Colors.deepPurple,
+
     this.onTap,
     this.onAction,
     super.key,
@@ -14,7 +14,7 @@ class ItemCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final DateTime? date;
-  final Color color;
+
   final VoidCallback? onTap;
   final VoidCallback? onAction;
 
@@ -26,10 +26,10 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      elevation: 0.6,
-      borderRadius: const BorderRadius.all(Radius.circular(12)),
+    final cardColor = Theme.of(context).primaryColor;
+
+    return Card(
+      elevation: 2,
       child: InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(12)),
         onTap: onTap,
@@ -43,11 +43,11 @@ class ItemCard extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 26,
-                backgroundColor: color.withAlpha(38),
+                backgroundColor: cardColor.withAlpha(38),
                 child: Text(
                   title.isNotEmpty ? title[0].toUpperCase() : '-',
                   style: TextStyle(
-                    color: color,
+                    color: cardColor,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -61,10 +61,8 @@ class ItemCard extends StatelessWidget {
                       title,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 16,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w600,
-                        color: Colors.black87,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -73,18 +71,16 @@ class ItemCard extends StatelessWidget {
                         subtitle,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontSize: 13,
-                          color: Colors.black54,
                         ),
                       ),
                     if (_formattedDate.isNotEmpty) ...[
                       const SizedBox(height: 6),
                       Text(
                         _formattedDate,
-                        style: const TextStyle(
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           fontSize: 12,
-                          color: Colors.black38,
                         ),
                       ),
                     ],
@@ -94,7 +90,10 @@ class ItemCard extends StatelessWidget {
               const SizedBox(width: 8),
               IconButton(
                 onPressed: onAction,
-                icon: const Icon(Icons.more_vert, color: Colors.black54),
+                icon: Icon(
+                  Icons.more_vert,
+                  color: Theme.of(context).iconTheme.color,
+                ),
                 splashRadius: 20,
               ),
             ],

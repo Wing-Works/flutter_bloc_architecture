@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc_architecture/core/di/di.dart';
 import 'package:flutter_bloc_architecture/src/home/bloc/home_bloc.dart';
 import 'package:flutter_bloc_architecture/src/home/home_screen.dart';
+import 'package:flutter_bloc_architecture/src/settings/settings_screen.dart';
 import 'package:flutter_bloc_architecture/src/splash_screen/splash_screen.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -14,6 +15,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
           return HomeScreen(getIt<HomeBloc>());
         },
       );
+    case SettingsScreen.routeName:
+      return MaterialPageRoute(builder: (_) => const SettingsScreen());
     default:
       return MaterialPageRoute(builder: (_) => const SplashScreen());
   }

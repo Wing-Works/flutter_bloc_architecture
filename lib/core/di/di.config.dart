@@ -10,6 +10,9 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:domain/domain.dart' as _i494;
+import 'package:flutter_bloc_architecture/core/services/theme_service.dart'
+    as _i178;
+import 'package:flutter_bloc_architecture/src/my_app/cubit/theme_cubit.dart' as _i979;
 import 'package:flutter_bloc_architecture/src/home/bloc/home_bloc.dart' as _i19;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
@@ -21,8 +24,12 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    gh.lazySingleton<_i178.ThemeService>(() => _i178.ThemeService());
     gh.factory<_i19.HomeBloc>(
       () => _i19.HomeBloc(gh<_i494.GetProductListUseCase>()),
+    );
+    gh.factory<_i979.ThemeCubit>(
+      () => _i979.ThemeCubit(gh<_i178.ThemeService>()),
     );
     return this;
   }

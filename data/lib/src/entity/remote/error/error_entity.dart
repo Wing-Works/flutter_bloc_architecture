@@ -1,14 +1,18 @@
-import 'package:dart_mappable/dart_mappable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-part 'error_entity.mapper.dart';
+part 'error_entity.g.dart';
 
-@MappableClass()
-class ErrorEntity with ErrorEntityMappable {
+@JsonSerializable()
+class ErrorEntity {
   ErrorEntity({this.type = '', this.code = 0, this.message = ''});
+
+  factory ErrorEntity.fromJson(Map<String, dynamic> json) {
+    return _$ErrorEntityFromJson(json);
+  }
 
   int code;
   String type;
   String message;
 
-  static const fromJson = ErrorEntityMapper.fromJson;
+  Map<String, dynamic> toJson() => _$ErrorEntityToJson(this);
 }
