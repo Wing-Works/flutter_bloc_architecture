@@ -12,20 +12,14 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
-        backgroundColor: Theme
-            .of(context)
-            .primaryColor,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: ListView(
         padding: const EdgeInsets.all(16).r,
         children: [
           Text(
             'Appearance',
-            style: Theme
-                .of(context)
-                .textTheme
-                .headlineSmall
-                ?.copyWith(
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -40,10 +34,7 @@ class SettingsScreen extends StatelessWidget {
                   title: const Text('Theme'),
                   subtitle: Text(
                     'Customize your app appearance',
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .bodySmall,
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ),
               ],
@@ -52,11 +43,7 @@ class SettingsScreen extends StatelessWidget {
           const SizedBox(height: 24),
           Text(
             'About',
-            style: Theme
-                .of(context)
-                .textTheme
-                .headlineSmall
-                ?.copyWith(
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
             ),
           ),

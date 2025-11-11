@@ -27,7 +27,5 @@ class GetArticleParams extends Params {
   final int limit;
 
   @override
-  Map<String, dynamic> get toJson {
-    return {'limit': limit};
-  }
+  Map<String, dynamic> get toJson => {'limit': limit};
 }

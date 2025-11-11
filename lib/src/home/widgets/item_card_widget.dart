@@ -5,7 +5,6 @@ class ItemCard extends StatelessWidget {
     required this.title,
     required this.subtitle,
     this.date,
-
     this.onTap,
     this.onAction,
     super.key,
@@ -17,12 +16,6 @@ class ItemCard extends StatelessWidget {
 
   final VoidCallback? onTap;
   final VoidCallback? onAction;
-
-  String get _formattedDate {
-    if (date == null) return '';
-    final d = date!;
-    return '${d.day}/${d.month}/${d.year}';
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,5 +94,11 @@ class ItemCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String get _formattedDate {
+    if (date == null) return '';
+    final d = date!;
+    return '${d.day}/${d.month}/${d.year}';
   }
 }

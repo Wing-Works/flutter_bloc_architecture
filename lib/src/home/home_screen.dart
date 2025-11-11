@@ -9,7 +9,7 @@ import 'package:flutter_bloc_architecture/src/widget/render/gap.dart';
 import 'package:flutter_bloc_architecture/src/widget/theme_toggle_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class HomeScreen extends BaseStatefulWidget {
+class HomeScreen extends BaseStatefulWidget<HomeBloc> {
   const HomeScreen(super.bloc, {super.key});
 
   static const routeName = '/home';
@@ -26,14 +26,14 @@ class _HomeScreenState extends BasePageState<HomeBloc, HomeScreen> {
   }
 
   @override
-  PreferredSizeWidget? buildAppbar(BuildContext context) => AppBar(
+  PreferredSizeWidget? buildAppbar() => AppBar(
     title: Text(
       'Home Screen',
       style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
     ),
     centerTitle: true,
     leading: GestureDetector(
-      onTap: Navigator.of(context).pop,
+      onTap: onBackPressed,
       child: Icon(
         Icons.arrow_back_ios,
         color: Theme.of(context).colorScheme.onPrimary,

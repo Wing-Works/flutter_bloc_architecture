@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 abstract class AppService {
   const AppService._();
 
-  static final GlobalKey<NavigatorState>? navigatorKey = GlobalKey(
+  static final navigatorKey = GlobalKey<NavigatorState>(
     debugLabel: 'my-app-key',
   );
 
-  static final GlobalKey<NavigatorState>? appKey = GlobalKey(
+  static final appKey = GlobalKey<NavigatorState>(
     debugLabel: 'appKey-app-key',
   );
 }

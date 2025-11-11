@@ -2,24 +2,28 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// A mixin that provides a structured way to build a Scaffold with customizable components
+/// A class that provides a structured way to build a Scaffold with customizable components
 ///
-/// This mixin is designed to work with BLoC pattern and provides methods to override
+/// This mixin is designed to work with B pattern and provides methods to override
 /// various Scaffold properties and widgets
-mixin ScaffoldWrapper<B extends BlocBase<dynamic>> {
+abstract class ScaffoldWrapper<
+  B extends BlocBase<dynamic>,
+  W extends StatefulWidget
+>
+    extends State<W> {
   /// Builds the main content view of the scaffold
   ///
   /// [context] The build context
-  /// [bloc] The BLoC instance associated with this view
+  /// [B] The B instance associated with this view
   @mustCallSuper
   @protected
-  Widget buildView(BuildContext context, B bloc);
+  Widget buildView(BuildContext context, B B);
 
   /// Builds the app bar for the scaffold
   ///
   /// Returns null by default, override to provide custom app bar
   /// [context] The build context
-  PreferredSizeWidget? buildAppbar(BuildContext context) => null;
+  PreferredSizeWidget? buildAppbar() => null;
 
   /// The key for the scaffold widget
   Key? get scaffoldKey => null;
@@ -61,7 +65,7 @@ mixin ScaffoldWrapper<B extends BlocBase<dynamic>> {
   /// Builds the bottom sheet for the scaffold
   ///
   /// [context] The build context
-  /// [bloc] The BLoC instance associated with this view
+  /// [B] The B instance associated with this view
   Widget? bottomSheet(BuildContext context) => null;
 
   /// Builds the floating action button for the scaffold
@@ -112,7 +116,7 @@ mixin ScaffoldWrapper<B extends BlocBase<dynamic>> {
   Widget buildBody(BuildContext context, B bloc) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: buildAppbar(context),
+      appBar: buildAppbar(),
       backgroundColor: backgroundColor,
       drawer: drawer(context),
       onDrawerChanged: onDrawerChanged,
@@ -140,5 +144,24 @@ mixin ScaffoldWrapper<B extends BlocBase<dynamic>> {
         child: buildView(context, bloc),
       ),
     );
+  }
+
+  Future<bool> onBackPressed({dynamic param}) {
+    return _onWillPop(param);
+  }
+
+  Future<bool> _onWillPop(dynamic param) {
+    if (Navigator.canPop(context)) {
+      if (param != null) {
+        Navigator.pop(context, param);
+        return Future.value(false);
+      } else {
+        Navigator.pop(
+          context,
+        );
+        return Future.value(false);
+      }
+    }
+    return Future.value(true);
   }
 }

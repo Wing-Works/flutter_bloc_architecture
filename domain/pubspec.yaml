@@ -1,5 +1,5 @@
 name: domain
-description: "Domain layer package for flutter_bloc_architecture (defines entities, use-cases, and repositories interfaces)."
+description: "Domain layer is high level module and package for flutter_bloc_architecture (defines entities, use-cases, and repositories interfaces)."
 version: 0.0.1
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -16,7 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  get_it: ^8.2.0
+  get_it: ^9.0.5
   injectable: ^2.5.2
   json_annotation: ^4.9.0
 
@@ -28,3 +28,8 @@ dev_dependencies:
 
   injectable_generator: ^2.9.0
   json_serializable: ^6.11.1
+  mockito: ^5.5.1
+
+flutter:
+
+  uses-material-design: true

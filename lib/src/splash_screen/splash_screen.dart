@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_architecture/src/home/home_screen.dart';
-import 'package:flutter_bloc_architecture/src/widget/theme_toggle_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatelessWidget {

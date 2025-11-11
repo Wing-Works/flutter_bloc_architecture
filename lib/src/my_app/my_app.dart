@@ -15,13 +15,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => getIt<ThemeCubit>(),
-      child: BlocBuilder<ThemeCubit, ThemeMode>(
-        builder: (context, themeMode) {
-          return ScreenUtilInit(
-            minTextAdapt: true,
-            splitScreenMode: true,
-            ensureScreenSize: true,
-            child: MaterialApp(
+      child: ScreenUtilInit(
+        minTextAdapt: true,
+        splitScreenMode: true,
+        ensureScreenSize: true,
+        child: BlocSelector<ThemeCubit, ThemeMode, ThemeMode>(
+          selector: (s) => s,
+          builder: (_, themeMode) {
+            return MaterialApp(
               key: AppService.appKey,
               navigatorKey: AppService.navigatorKey,
               theme: themeData,
@@ -29,9 +30,9 @@ class MyApp extends StatelessWidget {
               themeMode: themeMode,
               initialRoute: SplashScreen.routeName,
               onGenerateRoute: onGenerateRoute,
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

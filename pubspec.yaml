@@ -19,15 +19,15 @@ dependencies:
   domain:
     path: domain
 
+  equatable: ^2.0.7
   flutter:
     sdk: flutter
 
   flutter_bloc: ^9.1.1
   flutter_screenutil: ^5.9.3
-  get_it: ^8.2.0
+  get_it: ^9.0.5
   google_fonts: ^6.3.2
   injectable: ^2.5.2
-  shared_preferences: ^2.3.4
 
 dev_dependencies:
 

@@ -15,9 +15,6 @@ ThemeData get themeData {
     colorScheme: const ColorScheme.light(
       primary: kPrimaryColor,
       secondary: kSecondaryLightColor,
-      surface: Colors.white,
-      background: Colors.white,
-      onPrimary: Colors.white,
       onSecondary: kBodyTextColorLight,
       onSurface: kTitleTextLightColor,
     ),
@@ -46,17 +43,17 @@ ThemeData get themeData {
       ),
     ),
     switchTheme: SwitchThemeData(
-      thumbColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
+      thumbColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
           return kPrimaryColor;
         }
         return Colors.grey;
       }),
-      trackColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
-          return kPrimaryColor.withOpacity(0.5);
+      trackColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return kPrimaryColor.withAlpha(50);
         }
-        return Colors.grey.withOpacity(0.3);
+        return Colors.grey.withAlpha(30);
       }),
     ),
     textTheme: GoogleFonts.latoTextTheme().copyWith(
@@ -78,7 +75,6 @@ ThemeData get themeData {
 
 ThemeData get darkThemeData {
   return ThemeData.dark().copyWith(
-    useMaterial3: true,
     primaryColor: kPrimaryColor,
     scaffoldBackgroundColor: const Color(0xFF0D0C0E),
     appBarTheme: appBarTheme.copyWith(
@@ -90,11 +86,8 @@ ThemeData get darkThemeData {
       primary: kPrimaryColor,
       secondary: kSecondaryDarkColor,
       surface: kSurfaceDarkColor,
-      background: kBackgroundDarkColor,
       onPrimary: Colors.white,
       onSecondary: kBodyTextColorDark,
-      onSurface: kTitleTextDarkColor,
-      onBackground: kTitleTextDarkColor,
     ),
     iconTheme: const IconThemeData(color: kBodyTextColorDark),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -121,17 +114,17 @@ ThemeData get darkThemeData {
       ),
     ),
     switchTheme: SwitchThemeData(
-      thumbColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
+      thumbColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
           return kPrimaryColor;
         }
         return Colors.grey[400];
       }),
-      trackColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
-          return kPrimaryColor.withOpacity(0.5);
+      trackColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return kPrimaryColor.withAlpha(50);
         }
-        return Colors.grey.withOpacity(0.3);
+        return Colors.grey.withAlpha(30);
       }),
     ),
     textTheme: GoogleFonts.latoTextTheme(ThemeData.dark().textTheme).copyWith(

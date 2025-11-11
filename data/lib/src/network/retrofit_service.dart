@@ -13,6 +13,6 @@ abstract class RetrofitService {
 
   @GET(NetworkConstant.products)
   Future<ProductEntity> getProductList(
-    @Queries() Map<String, dynamic> queryParameters,
+    @Queries() Map<String, dynamic> query,
   );
 }

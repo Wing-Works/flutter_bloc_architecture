@@ -1,1 +1,3 @@
-abstract class BaseEvent {}
+abstract class BaseEvent {
+  const BaseEvent();
+}

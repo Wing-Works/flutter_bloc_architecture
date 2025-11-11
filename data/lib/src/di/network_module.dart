@@ -14,8 +14,7 @@ abstract class NetworkModule with NetworkConstant {
     return dio;
   }
 
-  @singleton
-  PrettyDioLogger logger() {
+  PrettyDioLogger get _logger {
     return PrettyDioLogger(
       requestBody: true,
       requestHeader: true,
@@ -24,13 +23,8 @@ abstract class NetworkModule with NetworkConstant {
   }
 
   @singleton
-  ApiInterceptor provideApiInterceptor() {
-    return ApiInterceptor();
-  }
-
-  @singleton
   List<Interceptor> providerInterceptors(ApiInterceptor apiInterceptor) {
-    return <Interceptor>[logger(), apiInterceptor];
+    return <Interceptor>[_logger, apiInterceptor];
   }
 
   @lazySingleton
