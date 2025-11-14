@@ -2,15 +2,15 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_architecture/core/base/base_widget/stateful/base_stateful_widget.dart';
-import 'package:flutter_bloc_architecture/core/base/base_widget/stateless/base_stateless_widget.dart';
-import 'package:flutter_bloc_architecture/core/di/di.dart';
 import 'package:flutter_bloc_architecture/core/l10n/generated/l10n.dart';
 import 'package:flutter_bloc_architecture/src/home/bloc/home_bloc.dart';
 import 'package:flutter_bloc_architecture/src/home/widgets/item_card_widget.dart';
+import 'package:flutter_bloc_architecture/src/settings/settings_screen.dart';
 import 'package:flutter_bloc_architecture/src/widget/render/gap.dart';
+import 'package:flutter_bloc_architecture/src/widget/theme_toggle_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class HomeScreen extends BaseStatefulWidget {
+class HomeScreen extends BaseStatefulWidget<HomeBloc> {
   const HomeScreen(super.bloc, {super.key});
 
   static const routeName = '/home';
@@ -20,28 +20,38 @@ class HomeScreen extends BaseStatefulWidget {
 }
 
 class _HomeScreenState extends BasePageState<HomeBloc, HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    bloc.fetchData();
+  }
 
   @override
-  PreferredSizeWidget? buildAppbar(BuildContext context) {
-    return AppBar(
-      title: Text(
-        AppLocalizations.current.homeScreen,
-        style: const TextStyle(color: Colors.white),
+  PreferredSizeWidget? buildAppbar() => AppBar(
+    title: Text(
+      AppLocalizations.current.homeScreen,
+      style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+    ),
+    centerTitle: true,
+    leading: GestureDetector(
+      onTap: onBackPressed,
+      child: Icon(
+        Icons.arrow_back_ios,
+        color: Theme.of(context).colorScheme.onPrimary,
       ),
-      centerTitle: true,
-      leading: GestureDetector(
-        onTap: Navigator.of(context).pop,
-        child: const Icon(Icons.arrow_back_ios, color: Colors.white),
-      ),
-      actions: [
-        IconButton(
-          onPressed: bloc.fetchData,
-          icon: const Icon(Icons.refresh, color: Colors.white),
+    ),
+    actions: [
+      const ThemeToggleWidget(),
+      IconButton(
+        onPressed: () => Navigator.pushNamed(context, SettingsScreen.routeName),
+        icon: Icon(
+          Icons.settings,
+          color: Theme.of(context).colorScheme.onPrimary,
         ),
-      ],
-      backgroundColor: Colors.deepPurple,
-    );
-  }
+      ),
+    ],
+    backgroundColor: Theme.of(context).primaryColor,
+  );
 
   @override
   Widget buildView(BuildContext context, HomeBloc model) {

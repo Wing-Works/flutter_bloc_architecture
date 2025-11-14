@@ -1,4 +1,5 @@
 import 'package:domain/domain.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc_architecture/core/base/bloc/bloc_base/bloc_base.dart';
 import 'package:flutter_bloc_architecture/core/base/bloc/event/base_event.dart';
@@ -10,15 +11,9 @@ part 'home_state.dart';
 
 @injectable
 class HomeBloc extends BlocBase<HomeEvent, HomeState> {
-  HomeBloc(this._getArticleUseCase) : super(HomeState());
+  HomeBloc(this._getArticleUseCase) : super(const HomeState());
 
   final GetProductListUseCase _getArticleUseCase;
-
-  @override
-  void init() {
-    super.init();
-    fetchData();
-  }
 
   @override
   void mapEventToState() {
@@ -30,7 +25,7 @@ class HomeBloc extends BlocBase<HomeEvent, HomeState> {
   void fetchData() {
     apiCall<List<ProductModel>>(
       _getArticleUseCase,
-      params: GetArticleParams(limit: 5),
+      params: GetArticleParams(limit: 10),
       onSuccess: (data) => add(GetArticlesEvent(data)),
     );
   }

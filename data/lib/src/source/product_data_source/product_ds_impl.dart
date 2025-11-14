@@ -1,3 +1,4 @@
+import 'package:data/src/entity/remote/response/product_detail_entity.dart';
 import 'package:data/src/entity/remote/response/product_entity.dart';
 import 'package:data/src/network/retrofit_service.dart';
 import 'package:data/src/source/product_data_source/product_ds.dart';
@@ -12,5 +13,10 @@ class ArticleDataSourceImpl implements ProductDataSource {
   @override
   Future<ProductEntity> getProductList(Map<String, dynamic> queries) {
     return _retrofitService.getProductList(queries);
+  }
+
+  @override
+  Future<ProductDetailEntity> getProductDetail(int id) {
+    return _retrofitService.getProductDetail(id);
   }
 }

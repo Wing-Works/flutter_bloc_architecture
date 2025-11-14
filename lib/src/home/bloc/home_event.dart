@@ -1,9 +1,12 @@
 part of 'home_bloc.dart';
 
 @immutable
-sealed class HomeEvent extends BaseEvent {}
+sealed class HomeEvent extends BaseEvent {
+  const HomeEvent();
+}
 
 class GetArticlesEvent extends HomeEvent {
-  GetArticlesEvent(this.list);
+  const GetArticlesEvent(this.list);
+
   final List<ProductModel> list;
 }

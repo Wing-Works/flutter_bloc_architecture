@@ -1,8 +1,13 @@
 export 'src/di/domain_module.dart';
 export 'src/model/error/base_error.dart';
+export 'src/model/error/database_error.dart';
 export 'src/model/error/network_error.dart';
 export 'src/model/product_list/product_model.dart';
+export 'src/repository/preferences_repository/preferences_repository.dart';
 export 'src/repository/product_repository/product_repository.dart';
 export 'src/usecase/base/base_usecase.dart';
 export 'src/usecase/base/params.dart';
-export 'src/usecase/get_product_list/get_product_list.dart';
+export 'src/usecase/clear_theme_mode/clear_theme_mode_usecase.dart';
+export 'src/usecase/get_product_list/get_product_list_usecase.dart';
+export 'src/usecase/get_theme_mode/get_theme_mode_usecase.dart';
+export 'src/usecase/save_theme_mode/save_theme_mode_usecase.dart';

@@ -6,16 +6,15 @@ import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 @module
-abstract class NetworkModule with NetworkConstant {
+abstract class NetworkModule {
   @lazySingleton
   Dio providerDio(List<Interceptor> interceptors) {
-    final dio = Dio(BaseOptions(baseUrl: baseUrl));
+    final dio = Dio(BaseOptions(baseUrl: NetworkConstant.baseUrl));
     dio.interceptors.addAll(interceptors);
     return dio;
   }
 
-  @singleton
-  PrettyDioLogger logger() {
+  PrettyDioLogger get _logger {
     return PrettyDioLogger(
       requestBody: true,
       requestHeader: true,
@@ -24,13 +23,8 @@ abstract class NetworkModule with NetworkConstant {
   }
 
   @singleton
-  ApiInterceptor provideApiInterceptor() {
-    return ApiInterceptor();
-  }
-
-  @singleton
   List<Interceptor> providerInterceptors(ApiInterceptor apiInterceptor) {
-    return <Interceptor>[logger(), apiInterceptor];
+    return <Interceptor>[_logger, apiInterceptor];
   }
 
   @lazySingleton

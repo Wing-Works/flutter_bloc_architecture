@@ -7,27 +7,25 @@ import 'package:domain/src/usecase/base/params.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class GetProductListUseCase
-    extends BaseUseCase<GetArticleParams, List<ProductModel>> {
-  GetProductListUseCase(this._articleRepository);
+class GetProductDetailUseCase
+    extends BaseUseCase<GetProductDetailParams, ProductModel> {
+  GetProductDetailUseCase(this._articleRepository);
 
   final ProductRepository _articleRepository;
 
   @override
-  Future<Either<NetworkError, List<ProductModel>>> execute(
-    GetArticleParams params,
+  Future<Either<NetworkError, ProductModel>> execute(
+    GetProductDetailParams params,
   ) {
-    return _articleRepository.getArticles(params.toJson);
+    return _articleRepository.getProductDetail(params.id);
   }
 }
 
-class GetArticleParams extends Params {
-  GetArticleParams({required this.limit});
+class GetProductDetailParams extends Params {
+  GetProductDetailParams({required this.id});
 
-  final int limit;
+  final int id;
 
   @override
-  Map<String, dynamic> get toJson {
-    return {'limit': limit};
-  }
+  Map<String, dynamic> get toJson => {'id': id};
 }

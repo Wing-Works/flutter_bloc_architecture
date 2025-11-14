@@ -1,14 +1,14 @@
 abstract class BaseError implements Exception {
-  const BaseError({required this.code, required this.message, this.cause});
+  const BaseError({required this.cause, this.code, this.message = ''});
 
-  final Exception? cause;
-  final int code;
+  final Exception cause;
+  final int? code;
   final String message;
 
   String getFriendlyMessage() => message;
 
   @override
   String toString() {
-    return '$runtimeType(message: $message, cause: ${cause ?? 'none'})';
+    return 'BaseError(message: $message, cause: $cause)';
   }
 }

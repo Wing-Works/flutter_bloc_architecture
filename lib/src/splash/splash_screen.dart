@@ -48,6 +48,8 @@ class SplashScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Theme.of(context).primaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10).r,
                     ),
@@ -56,7 +58,6 @@ class SplashScreen extends StatelessWidget {
                     ),
                     textStyle: TextStyle(
                       fontSize: 20.sp,
-                      color: Theme.of(context).primaryColor,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
