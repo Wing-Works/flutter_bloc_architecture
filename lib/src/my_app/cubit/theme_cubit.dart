@@ -19,8 +19,7 @@ class ThemeCubit extends Cubit<ThemeMode> {
   final ClearThemeModeUseCase _clearThemeModeUseCase;
 
   Future<void> _loadTheme() async {
-    final result = await _getThemeModeUseCase
-        .execute();
+    final result = await _getThemeModeUseCase.execute();
     result.fold(
       (error) {
         emit(ThemeMode.light);
@@ -33,9 +32,8 @@ class ThemeCubit extends Cubit<ThemeMode> {
 
   Future<void> toggleTheme() async {
     final newMode = state == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
-    final result = await _saveThemeModeUseCase
-        .execute(
-          SaveThemeModeParams(isDarkMode: newMode == ThemeMode.dark),
+    final result = await _saveThemeModeUseCase.execute(
+      SaveThemeModeParams(isDarkMode: newMode == ThemeMode.dark),
     );
     result.fold(
       (error) => null,
@@ -44,9 +42,8 @@ class ThemeCubit extends Cubit<ThemeMode> {
   }
 
   Future<void> setTheme(ThemeMode mode) async {
-    final result = await _saveThemeModeUseCase
-        .execute(
-          SaveThemeModeParams(isDarkMode: mode == ThemeMode.dark),
+    final result = await _saveThemeModeUseCase.execute(
+      SaveThemeModeParams(isDarkMode: mode == ThemeMode.dark),
     );
     result.fold(
       (error) => null,

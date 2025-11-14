@@ -1,29 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_architecture/core/theme/constants.dart';
+import 'package:flutter_bloc_architecture/core/constant/color_constant.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData get themeData {
   return ThemeData(
     useMaterial3: true,
     appBarTheme: appBarTheme.copyWith(
-      backgroundColor: kPrimaryColor,
+      backgroundColor: ColorConstant.kPrimaryColor,
       foregroundColor: Colors.white,
       iconTheme: const IconThemeData(color: Colors.white),
     ),
-    primaryColor: kPrimaryColor,
+    primaryColor: ColorConstant.kPrimaryColor,
     scaffoldBackgroundColor: Colors.white,
     colorScheme: const ColorScheme.light(
-      primary: kPrimaryColor,
-      secondary: kSecondaryLightColor,
-      onSecondary: kBodyTextColorLight,
-      onSurface: kTitleTextLightColor,
+      primary: ColorConstant.kPrimaryColor,
+      secondary: ColorConstant.kSecondaryLightColor,
+      onSecondary: ColorConstant.kBodyTextColorLight,
+      onSurface: ColorConstant.kTitleTextLightColor,
     ),
-    iconTheme: const IconThemeData(color: kBodyTextColorLight),
+    iconTheme: const IconThemeData(color: ColorConstant.kBodyTextColorLight),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: kPrimaryColor,
-      foregroundColor: kAccentIconLightColor,
+      backgroundColor: ColorConstant.kPrimaryColor,
+      foregroundColor: ColorConstant.kAccentIconLightColor,
     ),
-    primaryIconTheme: const IconThemeData(color: kPrimaryIconLightColor),
+    primaryIconTheme: const IconThemeData(
+      color: ColorConstant.kPrimaryIconLightColor,
+    ),
     cardTheme: CardThemeData(
       elevation: 2,
       shape: RoundedRectangleBorder(
@@ -33,7 +35,7 @@ ThemeData get themeData {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: kPrimaryColor,
+        backgroundColor: ColorConstant.kPrimaryColor,
         foregroundColor: Colors.white,
         elevation: 2,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -45,27 +47,27 @@ ThemeData get themeData {
     switchTheme: SwitchThemeData(
       thumbColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
-          return kPrimaryColor;
+          return ColorConstant.kPrimaryColor;
         }
         return Colors.grey;
       }),
       trackColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
-          return kPrimaryColor.withAlpha(50);
+          return ColorConstant.kPrimaryColor.withAlpha(50);
         }
         return Colors.grey.withAlpha(30);
       }),
     ),
     textTheme: GoogleFonts.latoTextTheme().copyWith(
-      bodyLarge: const TextStyle(color: kBodyTextColorLight),
-      bodyMedium: const TextStyle(color: kBodyTextColorLight),
+      bodyLarge: const TextStyle(color: ColorConstant.kBodyTextColorLight),
+      bodyMedium: const TextStyle(color: ColorConstant.kBodyTextColorLight),
       headlineMedium: const TextStyle(
-        color: kTitleTextLightColor,
+        color: ColorConstant.kTitleTextLightColor,
         fontSize: 32,
         fontWeight: FontWeight.bold,
       ),
       displayLarge: const TextStyle(
-        color: kTitleTextLightColor,
+        color: ColorConstant.kTitleTextLightColor,
         fontSize: 80,
         fontWeight: FontWeight.bold,
       ),
@@ -75,36 +77,38 @@ ThemeData get themeData {
 
 ThemeData get darkThemeData {
   return ThemeData.dark().copyWith(
-    primaryColor: kPrimaryColor,
+    primaryColor: ColorConstant.kPrimaryColor,
     scaffoldBackgroundColor: const Color(0xFF0D0C0E),
     appBarTheme: appBarTheme.copyWith(
-      backgroundColor: kSurfaceDarkColor,
-      foregroundColor: kTitleTextDarkColor,
-      iconTheme: const IconThemeData(color: kTitleTextDarkColor),
+      backgroundColor: ColorConstant.kSurfaceDarkColor,
+      foregroundColor: ColorConstant.kTitleTextDarkColor,
+      iconTheme: const IconThemeData(color: ColorConstant.kTitleTextDarkColor),
     ),
     colorScheme: const ColorScheme.dark(
-      primary: kPrimaryColor,
-      secondary: kSecondaryDarkColor,
-      surface: kSurfaceDarkColor,
+      primary: ColorConstant.kPrimaryColor,
+      secondary: ColorConstant.kSecondaryDarkColor,
+      surface: ColorConstant.kSurfaceDarkColor,
       onPrimary: Colors.white,
-      onSecondary: kBodyTextColorDark,
+      onSecondary: ColorConstant.kBodyTextColorDark,
     ),
-    iconTheme: const IconThemeData(color: kBodyTextColorDark),
+    iconTheme: const IconThemeData(color: ColorConstant.kBodyTextColorDark),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: kPrimaryColor,
-      foregroundColor: kAccentIconDarkColor,
+      backgroundColor: ColorConstant.kPrimaryColor,
+      foregroundColor: ColorConstant.kAccentIconDarkColor,
     ),
-    primaryIconTheme: const IconThemeData(color: kPrimaryIconDarkColor),
+    primaryIconTheme: const IconThemeData(
+      color: ColorConstant.kPrimaryIconDarkColor,
+    ),
     cardTheme: CardThemeData(
       elevation: 4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
-      color: kSurfaceDarkColor,
+      color: ColorConstant.kSurfaceDarkColor,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: kPrimaryColor,
+        backgroundColor: ColorConstant.kPrimaryColor,
         foregroundColor: Colors.white,
         elevation: 2,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -116,27 +120,27 @@ ThemeData get darkThemeData {
     switchTheme: SwitchThemeData(
       thumbColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
-          return kPrimaryColor;
+          return ColorConstant.kPrimaryColor;
         }
         return Colors.grey[400];
       }),
       trackColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
-          return kPrimaryColor.withAlpha(50);
+          return ColorConstant.kPrimaryColor.withAlpha(50);
         }
         return Colors.grey.withAlpha(30);
       }),
     ),
     textTheme: GoogleFonts.latoTextTheme(ThemeData.dark().textTheme).copyWith(
-      bodyLarge: const TextStyle(color: kBodyTextColorDark),
-      bodyMedium: const TextStyle(color: kBodyTextColorDark),
+      bodyLarge: const TextStyle(color: ColorConstant.kBodyTextColorDark),
+      bodyMedium: const TextStyle(color: ColorConstant.kBodyTextColorDark),
       headlineMedium: const TextStyle(
-        color: kTitleTextDarkColor,
+        color: ColorConstant.kTitleTextDarkColor,
         fontSize: 32,
         fontWeight: FontWeight.bold,
       ),
       displayLarge: const TextStyle(
-        color: kTitleTextDarkColor,
+        color: ColorConstant.kTitleTextDarkColor,
         fontSize: 80,
         fontWeight: FontWeight.bold,
       ),

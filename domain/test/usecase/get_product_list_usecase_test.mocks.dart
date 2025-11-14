@@ -47,4 +47,16 @@ class MockProductRepository extends _i1.Mock implements _i2.ProductRepository {
           as _i3.Future<
             ({_i4.NetworkError? left, List<_i5.ProductModel>? right})
           >);
+
+  @override
+  _i3.Future<({_i4.NetworkError? left, _i5.ProductModel? right})>
+  getProductDetail(int? id) =>
+      (super.noSuchMethod(
+            Invocation.method(#getProductDetail, [id]),
+            returnValue:
+                _i3.Future<
+                  ({_i4.NetworkError? left, _i5.ProductModel? right})
+                >.value((left: null, right: null)),
+          )
+          as _i3.Future<({_i4.NetworkError? left, _i5.ProductModel? right})>);
 }

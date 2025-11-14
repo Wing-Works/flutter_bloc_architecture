@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:domain/src/model/error/network_error.dart';
 import 'package:domain/src/model/product_list/product_model.dart';
 import 'package:domain/src/repository/product_repository/product_repository.dart';
-import 'package:domain/src/usecase/get_product_list/get_product_list.dart';
+import 'package:domain/src/usecase/get_product_list/get_product_list_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

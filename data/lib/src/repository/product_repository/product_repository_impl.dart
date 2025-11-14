@@ -18,4 +18,9 @@ class ProductRepositoryImpl implements ProductRepository {
       articleDataSource.getProductList(queries),
     );
   }
+
+  @override
+  Future<Either<NetworkError, ProductModel>> getProductDetail(int id) {
+    return safeApiCall<ProductModel>(articleDataSource.getProductDetail(id));
+  }
 }

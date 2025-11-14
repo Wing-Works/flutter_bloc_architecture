@@ -1,3 +1,4 @@
+import 'package:data/src/entity/remote/response/product_detail_entity.dart';
 import 'package:data/src/entity/remote/response/product_entity.dart';
 import 'package:data/src/util/network_constant.dart';
 import 'package:dio/dio.dart';
@@ -12,7 +13,8 @@ abstract class RetrofitService {
   }
 
   @GET(NetworkConstant.products)
-  Future<ProductEntity> getProductList(
-    @Queries() Map<String, dynamic> query,
-  );
+  Future<ProductEntity> getProductList(@Queries() Map<String, dynamic> query);
+
+  @GET(NetworkConstant.productDetail)
+  Future<ProductDetailEntity> getProductDetail(@Path('id') int id);
 }

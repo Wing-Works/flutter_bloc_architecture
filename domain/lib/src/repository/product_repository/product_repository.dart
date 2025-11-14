@@ -6,4 +6,6 @@ abstract class ProductRepository {
   Future<Either<NetworkError, List<ProductModel>>> getArticles(
     Map<String, dynamic> queries,
   );
+
+  Future<Either<NetworkError, ProductModel>> getProductDetail(int id);
 }

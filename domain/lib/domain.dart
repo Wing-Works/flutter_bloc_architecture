@@ -7,6 +7,6 @@ export 'src/repository/product_repository/product_repository.dart';
 export 'src/usecase/base/base_usecase.dart';
 export 'src/usecase/base/params.dart';
 export 'src/usecase/clear_theme_mode/clear_theme_mode.dart';
-export 'src/usecase/get_product_list/get_product_list.dart';
+export 'src/usecase/get_product_list/get_product_list_usecase.dart';
 export 'src/usecase/get_theme_mode/get_theme_mode.dart';
 export 'src/usecase/save_theme_mode/save_theme_mode.dart';
