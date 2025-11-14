@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc_architecture/core/l10n/generated/l10n.dart';
 import 'package:flutter_bloc_architecture/core/route/app_router.dart';
 import 'package:flutter_bloc_architecture/core/services/app_service.dart';
 import 'package:flutter_bloc_architecture/src/splash_screen/splash_screen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyApp extends StatelessWidget {
@@ -16,6 +18,13 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         key: AppService.appKey,
         navigatorKey: AppService.navigatorKey,
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          AppLocalizations.delegate, // generated below
+        ],
+        supportedLocales: const [Locale('en', '')],
         theme: ThemeData(
           primaryColor: Colors.deepPurple,
           scaffoldBackgroundColor: Colors.grey[100],
