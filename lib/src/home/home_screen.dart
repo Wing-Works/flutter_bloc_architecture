@@ -2,8 +2,6 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_architecture/core/base/base_widget/stateful/base_stateful_widget.dart';
-import 'package:flutter_bloc_architecture/core/base/base_widget/stateless/base_stateless_widget.dart';
-import 'package:flutter_bloc_architecture/core/di/di.dart';
 import 'package:flutter_bloc_architecture/core/l10n/generated/l10n.dart';
 import 'package:flutter_bloc_architecture/src/home/bloc/home_bloc.dart';
 import 'package:flutter_bloc_architecture/src/home/widgets/item_card_widget.dart';
@@ -70,9 +68,7 @@ class _HomeScreenState extends BasePageState<HomeBloc, HomeScreen> {
             final item = list[index];
             return ItemCard(title: item.title, subtitle: item.category);
           },
-          separatorBuilder: (_, _) {
-            return const Gap.height(12);
-          },
+          separatorBuilder: (_, _) => const Gap.height(12),
         );
       },
     );

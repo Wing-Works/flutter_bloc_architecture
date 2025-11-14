@@ -10,32 +10,32 @@ class PreferencesRepositoryImpl implements PreferencesRepository {
   final PreferencesLocalDataSource preferencesLocalDataSource;
 
   @override
-  Future<Either<NetworkError, void>> saveThemeMode(bool isDarkMode) async {
+  Future<Either<DatabaseError, bool>> saveThemeMode(bool isDarkMode) async {
     try {
-      await preferencesLocalDataSource.saveThemeMode(isDarkMode);
-      return right(null);
+      final result = await preferencesLocalDataSource.saveThemeMode(isDarkMode);
+      return right(result);
     } catch (e) {
-      return left(NetworkError(message: e.toString()));
+      return left(DatabaseError(message: e.toString()));
     }
   }
 
   @override
-  Future<Either<NetworkError, bool>> getThemeMode() async {
+  Future<Either<DatabaseError, bool>> getThemeMode() async {
     try {
       final result = await preferencesLocalDataSource.getThemeMode();
       return right(result);
     } catch (e) {
-      return left(NetworkError(message: e.toString()));
+      return left(DatabaseError(message: e.toString()));
     }
   }
 
   @override
-  Future<Either<NetworkError, void>> clearThemeMode() async {
+  Future<Either<DatabaseError, bool>> clearThemeMode() async {
     try {
-      await preferencesLocalDataSource.clearThemeMode();
-      return right(null);
+      final result = await preferencesLocalDataSource.clearThemeMode();
+      return right(result);
     } catch (e) {
-      return left(NetworkError(message: e.toString()));
+      return left(DatabaseError(message: e.toString()));
     }
   }
 }

@@ -7,7 +7,8 @@ import 'package:domain/src/usecase/base/params.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class GetProductDetailUseCase extends BaseUseCase<GetProductDetailParams, ProductModel> {
+class GetProductDetailUseCase
+    extends BaseUseCase<GetProductDetailParams, ProductModel> {
   GetProductDetailUseCase(this._articleRepository);
 
   final ProductRepository _articleRepository;

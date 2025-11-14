@@ -100,9 +100,10 @@ void main() {
     );
 
     test('should return NetworkError when repository call fails', () async {
-      const testError = NetworkError(
+      final testError = NetworkError(
         httpError: 500,
         message: 'Internal Server Error',
+        cause: Exception('Internal Server Error'),
       );
 
       when(
@@ -126,7 +127,10 @@ void main() {
     });
 
     test('should return NetworkError when network connection fails', () async {
-      const testError = NetworkError(message: 'No internet connection');
+      final testError = NetworkError(
+        message: 'No internet connection',
+        cause: Exception('No internet connection'),
+      );
 
       when(
         mockProductRepository.getArticles(testQueryMap),
@@ -158,9 +162,10 @@ void main() {
     });
 
     test('should handle 404 error correctly', () async {
-      const notFoundError = NetworkError(
+      final notFoundError = NetworkError(
         httpError: 404,
         message: 'Products not found',
+        cause: Exception('Products not found'),
       );
 
       when(

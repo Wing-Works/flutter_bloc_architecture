@@ -7,9 +7,9 @@ class PreferencesLocalDataSourceImpl implements PreferencesLocalDataSource {
   static const String _themeKey = 'theme_mode';
 
   @override
-  Future<void> saveThemeMode(bool isDarkMode) async {
+  Future<bool> saveThemeMode(bool isDarkMode) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_themeKey, isDarkMode);
+    return prefs.setBool(_themeKey, isDarkMode);
   }
 
   @override
@@ -19,8 +19,8 @@ class PreferencesLocalDataSourceImpl implements PreferencesLocalDataSource {
   }
 
   @override
-  Future<void> clearThemeMode() async {
+  Future<bool> clearThemeMode() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_themeKey);
+    return prefs.remove(_themeKey);
   }
 }

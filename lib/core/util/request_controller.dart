@@ -8,7 +8,7 @@ mixin RequestController {
     BaseUseCase<Params, T> createCall, {
     required Params params,
     required void Function(T) onSuccess,
-    void Function(NetworkError)? onFailure,
+    void Function(BaseError)? onFailure,
   }) async {
     await createCall.execute(params).then((value) {
       value.fold(

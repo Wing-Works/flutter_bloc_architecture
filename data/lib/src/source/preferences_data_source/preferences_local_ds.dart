@@ -1,7 +1,7 @@
 abstract class PreferencesLocalDataSource {
-  Future<void> saveThemeMode(bool isDarkMode);
+  Future<bool> saveThemeMode(bool isDarkMode);
 
   Future<bool> getThemeMode();
 
-  Future<void> clearThemeMode();
+  Future<bool> clearThemeMode();
 }

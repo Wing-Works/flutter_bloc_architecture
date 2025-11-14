@@ -13,15 +13,15 @@ import 'package:domain/src/repository/preferences_repository/preferences_reposit
     as _i627;
 import 'package:domain/src/repository/product_repository/product_repository.dart'
     as _i350;
-import 'package:domain/src/usecase/clear_theme_mode/clear_theme_mode.dart'
+import 'package:domain/src/usecase/clear_theme_mode/clear_theme_mode_usecase.dart'
     as _i699;
 import 'package:domain/src/usecase/get_product_list/get_product_list_usecase.dart'
     as _i390;
-import 'package:domain/src/usecase/get_theme_mode/get_theme_mode.dart'
+import 'package:domain/src/usecase/get_theme_mode/get_theme_mode_usecase.dart'
     as _i1066;
 import 'package:domain/src/usecase/product_detail/product_detail_usecase.dart'
     as _i252;
-import 'package:domain/src/usecase/save_theme_mode/save_theme_mode.dart'
+import 'package:domain/src/usecase/save_theme_mode/save_theme_mode_usecase.dart'
     as _i123;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
