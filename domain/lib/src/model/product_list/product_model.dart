@@ -4,7 +4,7 @@ part 'product_model.g.dart';
 
 @JsonSerializable()
 class ProductModel {
-  ProductModel({
+  const ProductModel({
     this.id = 0,
     this.title = '',
     this.description = '',

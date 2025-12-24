@@ -13,19 +13,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class HomeScreen extends BaseStatefulWidget<HomeBloc> {
   const HomeScreen(super.bloc, {super.key});
 
-  static const routeName = '/home';
+  static const String routeName = '/home';
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends BasePageState<HomeBloc, HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-    bloc.fetchData();
-  }
-
   @override
   PreferredSizeWidget? buildAppbar() => AppBar(
     title: Text(
@@ -64,10 +58,7 @@ class _HomeScreenState extends BasePageState<HomeBloc, HomeScreen> {
         return ListView.separated(
           padding: const EdgeInsets.all(12).r,
           itemCount: list.length,
-          itemBuilder: (_, index) {
-            final item = list[index];
-            return ItemCard(title: item.title, subtitle: item.category);
-          },
+          itemBuilder: (_, index) => ItemCard(item: list[index]),
           separatorBuilder: (_, _) => const Gap.height(12),
         );
       },

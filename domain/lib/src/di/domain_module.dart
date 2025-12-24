@@ -3,6 +3,4 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
 @InjectableInit(initializerName: 'initDomainModule')
-Future<void> $initDomainModule(GetIt getIt) async {
-  getIt.initDomainModule();
-}
+void $initDomainModule(GetIt getIt) => getIt.initDomainModule();

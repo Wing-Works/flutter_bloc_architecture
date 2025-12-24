@@ -25,7 +25,7 @@ void main() {
     final testQueryMap = testParams.toJson;
 
     final mockProductList = [
-      ProductModel(
+      const ProductModel(
         id: 1,
         title: 'Test Product 1',
         description: 'Test Description 1',
@@ -39,7 +39,7 @@ void main() {
         weight: 1.5,
         thumbnail: 'https://example.com/thumb1.jpg',
       ),
-      ProductModel(
+      const ProductModel(
         id: 2,
         title: 'Test Product 2',
         description: 'Test Description 2',

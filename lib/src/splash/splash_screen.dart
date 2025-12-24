@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_architecture/src/home/home_screen.dart';
+import 'package:flutter_bloc_architecture/src/widget/render/gap.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -44,6 +45,7 @@ class SplashScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              const Gap.height(20),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(

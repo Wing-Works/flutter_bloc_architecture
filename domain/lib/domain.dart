@@ -10,4 +10,5 @@ export 'src/usecase/base/params.dart';
 export 'src/usecase/clear_theme_mode/clear_theme_mode_usecase.dart';
 export 'src/usecase/get_product_list/get_product_list_usecase.dart';
 export 'src/usecase/get_theme_mode/get_theme_mode_usecase.dart';
+export 'src/usecase/product_detail/product_detail_usecase.dart';
 export 'src/usecase/save_theme_mode/save_theme_mode_usecase.dart';
