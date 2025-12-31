@@ -15,12 +15,14 @@ class ProductRepositoryImpl implements ProductRepository {
     Map<String, dynamic> queries,
   ) {
     return safeApiCall<List<ProductModel>>(
-      articleDataSource.getProductList(queries),
+      () => articleDataSource.getProductList(queries),
     );
   }
 
   @override
   Future<Either<NetworkError, ProductModel>> getProductDetail(int id) {
-    return safeApiCall<ProductModel>(articleDataSource.getProductDetail(id));
+    return safeApiCall<ProductModel>(
+      () => articleDataSource.getProductDetail(id),
+    );
   }
 }

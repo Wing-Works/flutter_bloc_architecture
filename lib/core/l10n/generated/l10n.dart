@@ -58,6 +58,166 @@ class AppLocalizations {
   String get homeScreen {
     return Intl.message('Home Screen', name: 'homeScreen', desc: '', args: []);
   }
+
+  /// `Find Your Product`
+  String get findYourProduct {
+    return Intl.message(
+      'Find Your Product',
+      name: 'findYourProduct',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get Started`
+  String get getStarted {
+    return Intl.message('Get Started', name: 'getStarted', desc: '', args: []);
+  }
+
+  /// `Dark Mode`
+  String get darkMode {
+    return Intl.message('Dark Mode', name: 'darkMode', desc: '', args: []);
+  }
+
+  /// `Light Mode`
+  String get lightMode {
+    return Intl.message('Light Mode', name: 'lightMode', desc: '', args: []);
+  }
+
+  /// `Switch to Light Mode`
+  String get switchToLightMode {
+    return Intl.message(
+      'Switch to Light Mode',
+      name: 'switchToLightMode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Switch to Dark Mode`
+  String get switchToDarkMode {
+    return Intl.message(
+      'Switch to Dark Mode',
+      name: 'switchToDarkMode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message('Search', name: 'search', desc: '', args: []);
+  }
+
+  /// `All`
+  String get all {
+    return Intl.message('All', name: 'all', desc: '', args: []);
+  }
+
+  /// `50% OFF`
+  String get discountOffer {
+    return Intl.message('50% OFF', name: 'discountOffer', desc: '', args: []);
+  }
+
+  /// `on all product's`
+  String get discountDescription {
+    return Intl.message(
+      'on all product\'s',
+      name: 'discountDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Brand`
+  String get noBrand {
+    return Intl.message('No Brand', name: 'noBrand', desc: '', args: []);
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message('Description', name: 'description', desc: '', args: []);
+  }
+
+  /// `No description available`
+  String get noDescriptionAvailable {
+    return Intl.message(
+      'No description available',
+      name: 'noDescriptionAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quantity`
+  String get quantity {
+    return Intl.message('Quantity', name: 'quantity', desc: '', args: []);
+  }
+
+  /// `Total Price`
+  String get totalPrice {
+    return Intl.message('Total Price', name: 'totalPrice', desc: '', args: []);
+  }
+
+  /// `Add to Basket`
+  String get addToBasket {
+    return Intl.message(
+      'Add to Basket',
+      name: 'addToBasket',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a size`
+  String get pleaseSelectASize {
+    return Intl.message(
+      'Please select a size',
+      name: 'pleaseSelectASize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Added {quantity} item(s) (Size: {size}) to basket!`
+  String addedToBasket(Object quantity, Object size) {
+    return Intl.message(
+      'Added $quantity item(s) (Size: $size) to basket!',
+      name: 'addedToBasket',
+      desc: '',
+      args: [quantity, size],
+    );
+  }
+
+  /// `Oops! Something went wrong`
+  String get somethingWentWrong {
+    return Intl.message(
+      'Oops! Something went wrong',
+      name: 'somethingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to load product details`
+  String get failedToLoadProduct {
+    return Intl.message(
+      'Failed to load product details',
+      name: 'failedToLoadProduct',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again`
+  String get tryAgain {
+    return Intl.message('Try Again', name: 'tryAgain', desc: '', args: []);
+  }
+
+  /// `in stock`
+  String get inStock {
+    return Intl.message('in stock', name: 'inStock', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -22,4 +22,5 @@ abstract class ColorConstant {
   static const kTitleTextDarkColor = Color(0xFFFFFFFF);
 
   static const kShadowColor = Color(0xFF364564);
+  static const kScaffold = Color(0xffF3F3F3);
 }

@@ -15,31 +15,23 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
   discountPercentage: (json['discountPercentage'] as num?)?.toDouble() ?? 0,
   rating: (json['rating'] as num?)?.toDouble() ?? 0,
   stock: (json['stock'] as num?)?.toInt() ?? 0,
-  tags:
-      (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      const <String>[],
+  tags: json['tags'] as List<dynamic>? ?? const <String>[],
   brand: json['brand'] as String? ?? '',
   sku: json['sku'] as String? ?? '',
-  weight: (json['weight'] as num?)?.toDouble() ?? 0,
+  weight: json['weight'] as num? ?? 0,
   dimensions: json['dimensions'] == null
       ? null
       : Dimensions.fromJson(json['dimensions'] as Map<String, dynamic>),
-  warrantyInformation: json['warrantyInformation'] as String? ?? '',
-  shippingInformation: json['shippingInformation'] as String? ?? '',
-  availabilityStatus: json['availabilityStatus'] as String? ?? '',
-  reviews:
-      (json['reviews'] as List<dynamic>?)
-          ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      const <Review>[],
-  returnPolicy: json['returnPolicy'] as String? ?? '',
-  minimumOrderQuantity: (json['minimumOrderQuantity'] as num?)?.toInt() ?? 0,
+  warrantyInformation: json['warrantyInformation'] as String?,
+  shippingInformation: json['shippingInformation'] as String?,
+  availabilityStatus: json['availabilityStatus'] as String?,
+  reviews: json['reviews'] as List<dynamic>?,
+  returnPolicy: json['returnPolicy'] as String?,
+  minimumOrderQuantity: (json['minimumOrderQuantity'] as num?)?.toInt(),
   meta: json['meta'] == null
       ? null
       : Meta.fromJson(json['meta'] as Map<String, dynamic>),
-  images:
-      (json['images'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      const <String>[],
+  images: json['images'] as List<dynamic>?,
   thumbnail: json['thumbnail'] as String? ?? '',
 );
 
@@ -53,26 +45,26 @@ Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
       'discountPercentage': instance.discountPercentage,
       'rating': instance.rating,
       'stock': instance.stock,
-      'tags': instance.tags,
       'brand': instance.brand,
       'sku': instance.sku,
       'weight': instance.weight,
-      'dimensions': instance.dimensions,
       'warrantyInformation': instance.warrantyInformation,
       'shippingInformation': instance.shippingInformation,
       'availabilityStatus': instance.availabilityStatus,
-      'reviews': instance.reviews,
       'returnPolicy': instance.returnPolicy,
       'minimumOrderQuantity': instance.minimumOrderQuantity,
-      'meta': instance.meta,
-      'images': instance.images,
+      'meta': instance.meta?.toJson(),
       'thumbnail': instance.thumbnail,
+      'reviews': instance.reviews,
+      'dimensions': instance.dimensions?.toJson(),
+      'tags': instance.tags,
+      'images': instance.images,
     };
 
 Dimensions _$DimensionsFromJson(Map<String, dynamic> json) => Dimensions(
-  width: (json['width'] as num?)?.toDouble(),
-  height: (json['height'] as num?)?.toDouble(),
-  depth: (json['depth'] as num?)?.toDouble(),
+  width: (json['width'] as num).toDouble(),
+  height: (json['height'] as num).toDouble(),
+  depth: (json['depth'] as num).toDouble(),
 );
 
 Map<String, dynamic> _$DimensionsToJson(Dimensions instance) =>
@@ -83,11 +75,11 @@ Map<String, dynamic> _$DimensionsToJson(Dimensions instance) =>
     };
 
 Review _$ReviewFromJson(Map<String, dynamic> json) => Review(
-  rating: (json['rating'] as num?)?.toInt(),
-  comment: json['comment'] as String?,
-  date: json['date'] == null ? null : DateTime.parse(json['date'] as String),
-  reviewerName: json['reviewerName'] as String?,
-  reviewerEmail: json['reviewerEmail'] as String?,
+  rating: (json['rating'] as num).toInt(),
+  comment: json['comment'] as String,
+  date: DateTime.parse(json['date'] as String),
+  reviewerName: json['reviewerName'] as String,
+  reviewerEmail: json['reviewerEmail'] as String,
 );
 
 Map<String, dynamic> _$ReviewToJson(Review instance) => <String, dynamic>{
@@ -99,14 +91,10 @@ Map<String, dynamic> _$ReviewToJson(Review instance) => <String, dynamic>{
 };
 
 Meta _$MetaFromJson(Map<String, dynamic> json) => Meta(
-  createdAt: json['createdAt'] == null
-      ? null
-      : DateTime.parse(json['createdAt'] as String),
-  updatedAt: json['updatedAt'] == null
-      ? null
-      : DateTime.parse(json['updatedAt'] as String),
-  barcode: json['barcode'] as String?,
-  qrCode: json['qrCode'] as String?,
+  createdAt: DateTime.parse(json['createdAt'] as String),
+  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  barcode: json['barcode'] as String,
+  qrCode: json['qrCode'] as String,
 );
 
 Map<String, dynamic> _$MetaToJson(Meta instance) => <String, dynamic>{

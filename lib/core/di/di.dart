@@ -7,8 +7,8 @@ import 'package:injectable/injectable.dart';
 GetIt getIt = GetIt.instance;
 
 @InjectableInit()
-Future<void> initDependencyInjection() async {
+void initDependencyInjection() {
   getIt.init();
-  await $initDataModule(getIt);
-  await $initDomainModule(getIt);
+  $initDataModule(getIt);
+  $initDomainModule(getIt);
 }

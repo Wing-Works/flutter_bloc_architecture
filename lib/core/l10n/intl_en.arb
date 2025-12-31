@@ -1,3 +1,25 @@
 {
-  "homeScreen": "Home Screen"
+  "homeScreen": "Home Screen",
+  "findYourProduct": "Find Your Product",
+  "getStarted": "Get Started",
+  "darkMode": "Dark Mode",
+  "lightMode": "Light Mode",
+  "switchToLightMode": "Switch to Light Mode",
+  "switchToDarkMode": "Switch to Dark Mode",
+  "search": "Search",
+  "all": "All",
+  "discountOffer": "50% OFF",
+  "discountDescription": "on all product's",
+  "noBrand": "No Brand",
+  "description": "Description",
+  "noDescriptionAvailable": "No description available",
+  "quantity": "Quantity",
+  "totalPrice": "Total Price",
+  "addToBasket": "Add to Basket",
+  "pleaseSelectASize": "Please select a size",
+  "addedToBasket": "Added {quantity} item(s) (Size: {size}) to basket!",
+  "somethingWentWrong": "Oops! Something went wrong",
+  "failedToLoadProduct": "Failed to load product details",
+  "tryAgain": "Try Again",
+  "inStock": "in stock"
 }
