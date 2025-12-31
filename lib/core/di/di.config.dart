@@ -15,6 +15,8 @@ import 'package:flutter_bloc_architecture/src/my_app/cubit/theme_cubit.dart'
     as _i499;
 import 'package:flutter_bloc_architecture/src/product_page/bloc/product_page_bloc.dart'
     as _i834;
+import 'package:flutter_bloc_architecture/src/splash/bloc/splash_bloc.dart'
+    as _i1050;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -25,6 +27,7 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    gh.factory<_i1050.SplashBloc>(() => _i1050.SplashBloc());
     gh.factory<_i19.HomeBloc>(
       () => _i19.HomeBloc(gh<_i494.GetProductListUseCase>()),
     );

@@ -1,29 +1,27 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_architecture/core/base/bloc/state/base_state.dart';
 
-/// A class that provides a structured way to build a Scaffold with customizable components
+/// A mixin that provides a structured way to build a Scaffold with customizable components
 ///
-/// This mixin is designed to work with B pattern and provides methods to override
+/// This mixin is designed to work with BLoC pattern and provides methods to override
 /// various Scaffold properties and widgets
-abstract class ScaffoldWrapper<
-  B extends BlocBase<dynamic>,
-  W extends StatefulWidget
->
-    extends State<W> {
+mixin ScaffoldWrapper<B extends BlocBase<BaseState>> {
   /// Builds the main content view of the scaffold
   ///
   /// [context] The build context
-  /// [B] The B instance associated with this view
+  /// [bloc] The BLoC instance associated with this view
   @mustCallSuper
   @protected
-  Widget buildView(BuildContext context, B B);
+  Widget buildView(BuildContext context, B bloc);
 
   /// Builds the app bar for the scaffold
   ///
   /// Returns null by default, override to provide custom app bar
   /// [context] The build context
-  PreferredSizeWidget? buildAppbar() => null;
+  /// [bloc] The BLoC instance associated with this view
+  PreferredSizeWidget? buildAppbar(BuildContext context, B bloc) => null;
 
   /// The key for the scaffold widget
   Key? get scaffoldKey => null;
@@ -34,7 +32,8 @@ abstract class ScaffoldWrapper<
   /// Builds the drawer widget for the scaffold
   ///
   /// [context] The build context
-  Widget? drawer(BuildContext context) => null;
+  /// [bloc] The BLoC instance associated with this view
+  Widget? drawer(BuildContext context, B bloc) => null;
 
   /// Callback when the drawer open state changes
   ///
@@ -44,7 +43,8 @@ abstract class ScaffoldWrapper<
   /// Builds the end drawer widget for the scaffold
   ///
   /// [context] The build context
-  Widget? endDrawer(BuildContext context) => null;
+  /// [bloc] The BLoC instance associated with this view
+  Widget? endDrawer(BuildContext context, B bloc) => null;
 
   /// Callback when the end drawer open state changes
   ///
@@ -60,18 +60,20 @@ abstract class ScaffoldWrapper<
   /// Builds the bottom navigation bar for the scaffold
   ///
   /// [context] The build context
-  Widget? bottomNavigationBar(BuildContext context) => null;
+  /// [bloc] The BLoC instance associated with this view
+  Widget? bottomNavigationBar(BuildContext context, B bloc) => null;
 
   /// Builds the bottom sheet for the scaffold
   ///
   /// [context] The build context
-  /// [B] The B instance associated with this view
-  Widget? bottomSheet(BuildContext context) => null;
+  /// [bloc] The BLoC instance associated with this view
+  Widget? bottomSheet(BuildContext context, B bloc) => null;
 
   /// Builds the floating action button for the scaffold
   ///
   /// [context] The build context
-  Widget? floatingActionButton(BuildContext context) => null;
+  /// [bloc] The BLoC instance associated with this view
+  Widget? floatingActionButton(BuildContext context, B bloc) => null;
 
   /// The location where the floating action button should be positioned
   FloatingActionButtonLocation? get floatingActionButtonLocation => null;
@@ -82,12 +84,12 @@ abstract class ScaffoldWrapper<
   /// Builds the list of persistent footer buttons
   ///
   /// [context] The build context
-  List<Widget>? persistentFooterButtons(BuildContext context) => null;
+  /// [bloc] The BLoC instance associated with this view
+  List<Widget>? persistentFooterButtons(BuildContext context, B bloc) => null;
 
   /// The alignment of the persistent footer buttons
-  AlignmentDirectional get persistentFooterAlignment {
-    return AlignmentDirectional.centerEnd;
-  }
+  AlignmentDirectional get persistentFooterAlignment =>
+      AlignmentDirectional.centerEnd;
 
   /// Whether the scaffold is the primary navigator
   bool get primary => true;
@@ -116,20 +118,20 @@ abstract class ScaffoldWrapper<
   Widget buildBody(BuildContext context, B bloc) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: buildAppbar(),
+      appBar: buildAppbar(context, bloc),
       backgroundColor: backgroundColor,
-      drawer: drawer(context),
+      drawer: drawer(context, bloc),
       onDrawerChanged: onDrawerChanged,
-      endDrawer: endDrawer(context),
+      endDrawer: endDrawer(context, bloc),
       onEndDrawerChanged: onEndDrawerChanged,
       extendBody: extendBody,
       extendBodyBehindAppBar: extendBodyBehindAppBar,
-      bottomNavigationBar: bottomNavigationBar(context),
-      bottomSheet: bottomSheet(context),
-      floatingActionButton: floatingActionButton(context),
+      bottomNavigationBar: bottomNavigationBar(context, bloc),
+      bottomSheet: bottomSheet(context, bloc),
+      floatingActionButton: floatingActionButton(context, bloc),
       floatingActionButtonLocation: floatingActionButtonLocation,
       floatingActionButtonAnimator: floatingActionButtonAnimator,
-      persistentFooterButtons: persistentFooterButtons(context),
+      persistentFooterButtons: persistentFooterButtons(context, bloc),
       persistentFooterAlignment: persistentFooterAlignment,
       primary: primary,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
@@ -144,24 +146,5 @@ abstract class ScaffoldWrapper<
         child: buildView(context, bloc),
       ),
     );
-  }
-
-  Future<bool> onBackPressed({dynamic param}) {
-    return _onWillPop(param);
-  }
-
-  Future<bool> _onWillPop(dynamic param) {
-    if (Navigator.canPop(context)) {
-      if (param != null) {
-        Navigator.pop(context, param);
-        return Future.value(false);
-      } else {
-        Navigator.pop(
-          context,
-        );
-        return Future.value(false);
-      }
-    }
-    return Future.value(true);
   }
 }

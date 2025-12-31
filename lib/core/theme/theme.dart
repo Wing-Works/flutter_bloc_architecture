@@ -11,7 +11,7 @@ ThemeData get themeData {
       iconTheme: const IconThemeData(color: Colors.white),
     ),
     primaryColor: ColorConstant.kPrimaryColor,
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: ColorConstant.kScaffold,
     colorScheme: const ColorScheme.light(
       primary: ColorConstant.kPrimaryColor,
       secondary: ColorConstant.kSecondaryLightColor,

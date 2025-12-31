@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_architecture/core/l10n/generated/l10n.dart';
 import 'package:flutter_bloc_architecture/src/my_app/cubit/theme_cubit.dart';
 
 class ThemeToggleWidget extends StatelessWidget {
@@ -20,11 +21,12 @@ class ThemeToggleWidget extends StatelessWidget {
       builder: (context, themeMode) {
         final isDark = themeMode == ThemeMode.dark;
         final themeCubit = context.read<ThemeCubit>();
+        final s = AppLocalizations.of(context);
 
         return showLabel
             ? SwitchListTile(
                 title: Text(
-                  isDark ? 'Dark Mode' : 'Light Mode',
+                  isDark ? s.darkMode : s.lightMode,
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 secondary: Icon(
@@ -40,11 +42,10 @@ class ThemeToggleWidget extends StatelessWidget {
                   isDark
                       ? (darkIcon ?? Icons.dark_mode)
                       : (lightIcon ?? Icons.light_mode),
+                  color: Theme.of(context).cardColor,
                 ),
                 onPressed: themeCubit.toggleTheme,
-                tooltip: isDark
-                    ? 'Switch to Light Mode'
-                    : 'Switch to Dark Mode',
+                tooltip: isDark ? s.switchToLightMode : s.switchToDarkMode,
               );
       },
     );

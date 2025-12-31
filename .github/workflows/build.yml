@@ -13,37 +13,59 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Setup Java (required for Android builds)
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.38.0"
+          channel: 'stable'
+          cache: true  # Built-in caching
 
-      # 1️⃣ Flutter or Dart cache
-      - name: Cache Flutter pub packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.pub-cache
-          key: ${{ runner.os }}-pub-${{ hashFiles('pubspec.lock') }}
-          restore-keys: ${{ runner.os }}-pub-
-
-      # 2️⃣ Gradle cache (for Android builds)
+      # Optional: Additional Gradle cache
       - name: Cache Gradle
         uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
+            android/.gradle
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: ${{ runner.os }}-gradle-
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
       - name: Get dependencies
         run: flutter pub get
 
+      # Verify Flutter setup
+      - name: Flutter doctor
+        run: flutter doctor -v
+
+      # Clean before build (optional but recommended)
+      - name: Clean build
+        run: flutter clean
+
       - name: Build release APK
         run: flutter build apk --release
+
+      # Verify APK was created
+      - name: Verify APK exists
+        run: |
+          if [ -f "build/app/outputs/flutter-apk/app-release.apk" ]; then
+            echo "✅ APK built successfully"
+            ls -lh build/app/outputs/flutter-apk/app-release.apk
+          else
+            echo "❌ APK not found"
+            exit 1
+          fi
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: flutter-apk
+          name: flutter-apk-${{ github.sha }}
           path: build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 30

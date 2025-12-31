@@ -5,6 +5,7 @@ import 'package:flutter_bloc_architecture/src/home/home_screen.dart';
 import 'package:flutter_bloc_architecture/src/product_page/bloc/product_page_bloc.dart';
 import 'package:flutter_bloc_architecture/src/product_page/product_page_screen.dart';
 import 'package:flutter_bloc_architecture/src/settings/settings_screen.dart';
+import 'package:flutter_bloc_architecture/src/splash/bloc/splash_bloc.dart';
 import 'package:flutter_bloc_architecture/src/splash/splash_screen.dart';
 
 /// Enhanced route generator with better error handling and type safety
@@ -26,7 +27,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 Route<dynamic> _buildRoute(String routeName, Object? args) {
   switch (routeName) {
     case SplashScreen.routeName:
-      return _createRoute(const SplashScreen());
+      return _createRoute(SplashScreen(getIt<SplashBloc>()));
 
     case HomeScreen.routeName:
       return _createRoute(

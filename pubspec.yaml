@@ -41,6 +41,7 @@ dev_dependencies:
     sdk: flutter
 
   injectable_generator: 2.11.1
+  intl_utils: ^2.8.13 # if you want to manually generate uncomment this
 
 flutter:
   generate: true
