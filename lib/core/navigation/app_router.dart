@@ -39,17 +39,12 @@ Route<dynamic> _buildRoute(String routeName, Object? args) {
       if (args is Map<String, dynamic>) {
         final productId = args['id'] as int? ?? 0;
         return _createRoute(
-          ProductPageScreen(
-            getIt<ProductPageBloc>(),
-            productId: productId,
-          ),
+          ProductPageScreen(getIt<ProductPageBloc>(), productId: productId),
         );
       }
       // Fallback if arguments are missing/invalid
       debugPrint('Invalid arguments for ProductPageScreen: $args');
-      return _buildErrorRoute(
-        'Invalid navigation arguments for product page',
-      );
+      return _buildErrorRoute('Invalid navigation arguments for product page');
 
     case SettingsScreen.routeName:
       return _createRoute(const SettingsScreen());
@@ -78,20 +73,14 @@ MaterialPageRoute<T> _createRoute<T>(
 Route<dynamic> _buildErrorRoute(String message) {
   return MaterialPageRoute(
     builder: (_) => Scaffold(
-      appBar: AppBar(
-        title: const Text('Navigation Error'),
-      ),
+      appBar: AppBar(title: const Text('Navigation Error')),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(
-                Icons.error_outline,
-                color: Colors.red,
-                size: 64,
-              ),
+              const Icon(Icons.error_outline, color: Colors.red, size: 64),
               const SizedBox(height: 16),
               Text(
                 message,

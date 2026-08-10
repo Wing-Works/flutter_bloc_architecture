@@ -1,8 +1,3 @@
-import 'package:json_annotation/json_annotation.dart';
-
-part 'product_model.g.dart';
-
-@JsonSerializable(explicitToJson: true)
 class ProductModel {
   const ProductModel({
     this.id = 0,
@@ -29,9 +24,6 @@ class ProductModel {
     this.thumbnail = '',
   });
 
-  factory ProductModel.fromJson(Map<String, dynamic> json) =>
-      _$ProductModelFromJson(json);
-
   final int id;
   final String title;
   final String description;
@@ -54,11 +46,8 @@ class ProductModel {
   final Dimensions? dimensions;
   final List<dynamic>? tags;
   final List<dynamic>? images;
-
-  Map<String, dynamic> toJson() => _$ProductModelToJson(this);
 }
 
-@JsonSerializable()
 class Dimensions {
   const Dimensions({
     required this.width,
@@ -66,16 +55,11 @@ class Dimensions {
     required this.depth,
   });
 
-  factory Dimensions.fromJson(Map<String, dynamic> json) =>
-      _$DimensionsFromJson(json);
   final double width;
   final double height;
   final double depth;
-
-  Map<String, dynamic> toJson() => _$DimensionsToJson(this);
 }
 
-@JsonSerializable()
 class Review {
   const Review({
     required this.rating,
@@ -85,17 +69,13 @@ class Review {
     required this.reviewerEmail,
   });
 
-  factory Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);
   final int rating;
   final String comment;
   final DateTime date;
   final String reviewerName;
   final String reviewerEmail;
-
-  Map<String, dynamic> toJson() => _$ReviewToJson(this);
 }
 
-@JsonSerializable()
 class Meta {
   const Meta({
     required this.createdAt,
@@ -104,11 +84,8 @@ class Meta {
     required this.qrCode,
   });
 
-  factory Meta.fromJson(Map<String, dynamic> json) => _$MetaFromJson(json);
   final DateTime createdAt;
   final DateTime updatedAt;
   final String barcode;
   final String qrCode;
-
-  Map<String, dynamic> toJson() => _$MetaToJson(this);
 }

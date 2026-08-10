@@ -1,11 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
-
-import 'package:dartz/dartz.dart';
 import 'package:data/src/entity/remote/error/error_entity.dart';
 import 'package:data/src/util/base_layer_transformer.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
+import 'package:twofold/twofold.dart';
 
 /// Safely executes an API call and transforms errors into domain-specific [NetworkError].
 ///
@@ -19,17 +18,17 @@ import 'package:domain/domain.dart';
 ///   (user) => print('Success: $user'),
 /// );
 /// ```
-Future<Either<NetworkError, S>> safeApiCall<S>(
+Future<Twofold<S, NetworkError>> safeApiCall<S>(
   Future<BaseLayerDataTransformer<S>> Function() apiCall,
 ) async {
   try {
     final response = await apiCall();
-    return right(response.transform);
+    return Twofold.success(response.transform);
   } on DioException catch (e, stackTrace) {
-    return left(_handleDioException(e, stackTrace));
+    return Twofold.error(_handleDioException(e, stackTrace));
   } on SocketException catch (e, stackTrace) {
     log('Socket exception occurred', error: e, stackTrace: stackTrace);
-    return left(
+    return Twofold.error(
       NetworkError(
         message: 'No internet connection',
         httpError: HttpStatus.serviceUnavailable,
@@ -38,7 +37,7 @@ Future<Either<NetworkError, S>> safeApiCall<S>(
     );
   } on IOException catch (e, stackTrace) {
     log('IO exception occurred', error: e, stackTrace: stackTrace);
-    return left(
+    return Twofold.error(
       NetworkError(
         message: 'Network communication failed',
         httpError: HttpStatus.badGateway,
@@ -47,7 +46,7 @@ Future<Either<NetworkError, S>> safeApiCall<S>(
     );
   } on FormatException catch (e, stackTrace) {
     log('Data format exception', error: e, stackTrace: stackTrace);
-    return left(
+    return Twofold.error(
       NetworkError(
         message: 'Invalid data format received from server',
         httpError: HttpStatus.unprocessableEntity,
@@ -56,7 +55,7 @@ Future<Either<NetworkError, S>> safeApiCall<S>(
     );
   } catch (e, stackTrace) {
     log('Unexpected error in API call', error: e, stackTrace: stackTrace);
-    return left(
+    return Twofold.error(
       NetworkError(
         message: 'An unexpected error occurred',
         httpError: HttpStatus.internalServerError,

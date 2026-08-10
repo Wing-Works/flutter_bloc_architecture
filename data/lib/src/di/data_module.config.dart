@@ -37,22 +37,22 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final networkModule = _$NetworkModule();
     gh.singleton<_i519.ApiInterceptor>(() => _i519.ApiInterceptor());
+    gh.singleton<List<_i361.Interceptor>>(
+      () => networkModule.providerInterceptors(gh<_i519.ApiInterceptor>()),
+    );
     gh.factory<_i532.PreferencesLocalDataSource>(
       () => _i524.PreferencesLocalDataSourceImpl(),
     );
-    gh.singleton<List<_i361.Interceptor>>(
-      () => networkModule.providerInterceptors(gh<_i519.ApiInterceptor>()),
+    gh.factory<_i494.PreferencesRepository>(
+      () => _i712.PreferencesRepositoryImpl(
+        preferencesLocalDataSource: gh<_i532.PreferencesLocalDataSource>(),
+      ),
     );
     gh.lazySingleton<_i361.Dio>(
       () => networkModule.providerDio(gh<List<_i361.Interceptor>>()),
     );
     gh.lazySingleton<_i1066.RetrofitService>(
       () => networkModule.providerRetrofitService(gh<_i361.Dio>()),
-    );
-    gh.factory<_i494.PreferencesRepository>(
-      () => _i712.PreferencesRepositoryImpl(
-        preferencesLocalDataSource: gh<_i532.PreferencesLocalDataSource>(),
-      ),
     );
     gh.factory<_i328.ProductDataSource>(
       () => _i69.ArticleDataSourceImpl(gh<_i1066.RetrofitService>()),

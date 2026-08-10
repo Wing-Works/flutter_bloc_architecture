@@ -1,10 +1,10 @@
-import 'package:dartz/dartz.dart';
 import 'package:domain/src/model/error/network_error.dart';
 import 'package:domain/src/model/product_list/product_model.dart';
 import 'package:domain/src/repository/product_repository/product_repository.dart';
 import 'package:domain/src/usecase/base/base_usecase.dart';
 import 'package:domain/src/usecase/base/params.dart';
 import 'package:injectable/injectable.dart';
+import 'package:twofold/twofold.dart';
 
 @injectable
 class GetProductDetailUseCase
@@ -14,7 +14,7 @@ class GetProductDetailUseCase
   final ProductRepository _articleRepository;
 
   @override
-  Future<Either<NetworkError, ProductModel>> execute(
+  Future<Twofold<ProductModel, NetworkError>> execute(
     GetProductDetailParams params,
   ) {
     return _articleRepository.getProductDetail(params.id);

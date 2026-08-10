@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:dartz/dartz.dart';
 import 'package:domain/domain.dart';
 
 mixin RequestController {
@@ -11,18 +10,14 @@ mixin RequestController {
     void Function(BaseError)? onFailure,
   }) async {
     await createCall.execute(params).then((value) {
-      value.fold(
-        (error) {
+      value.when(
+        onError: (error) {
           onFailure?.call(error);
-          log(
-            '''══════════════════════════════════════════════════════════════════════════════════════════''',
-          );
+          log('''══════════════════════════════════════════════════════════════════════════════════════════''');
           log('error: ${error.cause}');
-          log(
-            '''══════════════════════════════════════════════════════════════════════════════════════════''',
-          );
+          log('''══════════════════════════════════════════════════════════════════════════════════════════''');
         },
-        (data) => onSuccess(data),
+        onSuccess: onSuccess,
       );
     });
   }

@@ -1,3 +1,4 @@
+import 'package:data/src/entity/remote/response/product_detail_entity.dart';
 import 'package:data/src/util/base_layer_transformer.dart';
 import 'package:domain/domain.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -12,8 +13,8 @@ class ProductEntity extends BaseLayerDataTransformer<List<ProductModel>> {
     return _$ProductEntityFromJson(json);
   }
 
-  final List<ProductModel> products;
+  final List<ProductDetailEntity> products;
 
   @override
-  List<ProductModel> get transform => products;
+  List<ProductModel> get transform => products.map((e) => e.transform).toList();
 }

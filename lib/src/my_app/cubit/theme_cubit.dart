@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,13 +19,9 @@ class ThemeCubit extends Cubit<ThemeMode> {
 
   Future<void> _loadTheme() async {
     final result = await _getThemeModeUseCase.execute();
-    result.fold(
-      (error) {
-        emit(ThemeMode.light);
-      },
-      (isDarkMode) {
-        emit(isDarkMode ? ThemeMode.dark : ThemeMode.light);
-      },
+    result.when(
+      onSuccess: (value) => emit(value ? ThemeMode.dark : ThemeMode.light),
+      onError: (error) => emit(ThemeMode.light),
     );
   }
 
@@ -35,20 +30,14 @@ class ThemeCubit extends Cubit<ThemeMode> {
     final result = await _saveThemeModeUseCase.execute(
       SaveThemeModeParams(isDarkMode: newMode == ThemeMode.dark),
     );
-    result.fold(
-      (error) => null,
-      (_) => emit(newMode),
-    );
+    result.when(onError: (error) => null, onSuccess: (_) => emit(newMode));
   }
 
   Future<void> setTheme(ThemeMode mode) async {
     final result = await _saveThemeModeUseCase.execute(
       SaveThemeModeParams(isDarkMode: mode == ThemeMode.dark),
     );
-    result.fold(
-      (error) => null,
-      (_) => emit(mode),
-    );
+    result.when(onError: (error) => null, onSuccess: (_) => emit(mode));
   }
 
   Future<void> clearTheme() async {

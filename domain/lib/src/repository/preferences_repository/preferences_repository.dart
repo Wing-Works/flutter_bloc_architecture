@@ -1,10 +1,10 @@
-import 'package:dartz/dartz.dart';
 import 'package:domain/src/model/error/database_error.dart';
+import 'package:twofold/twofold.dart';
 
 abstract class PreferencesRepository {
-  Future<Either<DatabaseError, bool>> saveThemeMode(bool isDarkMode);
+  Future<Twofold<bool, DatabaseError>> saveThemeMode(bool isDarkMode);
 
-  Future<Either<DatabaseError, bool>> getThemeMode();
+  Future<Twofold<bool, DatabaseError>> getThemeMode();
 
-  Future<Either<DatabaseError, bool>> clearThemeMode();
+  Future<Twofold<bool, DatabaseError>> clearThemeMode();
 }

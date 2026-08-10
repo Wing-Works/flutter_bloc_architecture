@@ -1,7 +1,7 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_architecture/src/product_page/product_page_screen.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 
 class ItemCard extends StatelessWidget {
   const ItemCard({required this.item, super.key});
@@ -14,9 +14,7 @@ class ItemCard extends StatelessWidget {
 
     return Card(
       elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16).r,
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16).r),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: () => _navigateToProductPage(context),
@@ -88,7 +86,7 @@ class ItemCard extends StatelessWidget {
         width: 60,
         height: 60,
         decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor.withOpacity(0.1),
+          color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
           shape: BoxShape.circle,
         ),
         child: Center(
@@ -109,7 +107,7 @@ class ItemCard extends StatelessWidget {
   Widget _buildTitle(ThemeData theme) {
     return Text(
       item.title,
-      maxLines: 2,
+      maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: theme.textTheme.bodyMedium?.copyWith(
         fontWeight: FontWeight.w600,
@@ -128,11 +126,7 @@ class ItemCard extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                Icons.star_rounded,
-                size: 14,
-                color: Colors.amber[700],
-              ),
+              Icon(Icons.star_rounded, size: 14, color: Colors.amber[700]),
               const SizedBox(width: 4),
               Text(
                 item.rating.toStringAsFixed(1),
@@ -218,7 +212,7 @@ class ItemCardWithShimmer extends StatelessWidget {
       height: _imageHeight,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.05),
+        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(_borderRadius - 4),
       ),
       child: ClipRRect(
@@ -251,7 +245,7 @@ class ItemCardWithShimmer extends StatelessWidget {
         width: 60,
         height: 60,
         decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor.withOpacity(0.1),
+          color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
           shape: BoxShape.circle,
         ),
         child: Center(

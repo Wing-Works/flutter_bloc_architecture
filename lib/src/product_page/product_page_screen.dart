@@ -37,11 +37,11 @@ class _ProductPageScreenState
         icon: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: theme.cardColor.withOpacity(0.9),
+            color: theme.cardColor.withValues(alpha: 0.9),
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.1),
+                color: Colors.black.withValues(alpha: 0.1),
                 blurRadius: 8,
                 offset: const Offset(0, 2),
               ),
@@ -60,11 +60,11 @@ class _ProductPageScreenState
           icon: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: theme.cardColor.withOpacity(0.9),
+              color: theme.cardColor.withValues(alpha: 0.9),
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withValues(alpha: 0.1),
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                 ),
@@ -145,7 +145,7 @@ class _ProductPageScreenState
             fit: BoxFit.cover,
             loadingBuilder: (context, child, loadingProgress) {
               if (loadingProgress == null) return child;
-              return Container(
+              return ColoredBox(
                 color: Theme.of(context).scaffoldBackgroundColor,
                 child: Center(
                   child: CircularProgressIndicator(
@@ -158,7 +158,7 @@ class _ProductPageScreenState
               );
             },
             errorBuilder: (context, error, stackTrace) {
-              return Container(
+              return ColoredBox(
                 color: Theme.of(context).scaffoldBackgroundColor,
                 child: Center(
                   child: Icon(
@@ -413,7 +413,7 @@ class _ProductPageScreenState
           color: theme.cardColor,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 20,
               offset: const Offset(0, -5),
             ),
@@ -495,10 +495,7 @@ class _ProductPageScreenState
             Text(
               message ?? 'Failed to load product details',
               textAlign: TextAlign.center,
-              style: GoogleFonts.poppins(
-                fontSize: 14,
-                color: Colors.grey[600],
-              ),
+              style: GoogleFonts.poppins(fontSize: 14, color: Colors.grey[600]),
             ),
             const SizedBox(height: 24),
             ElevatedButton.icon(

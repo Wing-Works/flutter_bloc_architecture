@@ -7,7 +7,5 @@ abstract class AppService {
     debugLabel: 'my-app-key',
   );
 
-  static final appKey = GlobalKey<NavigatorState>(
-    debugLabel: 'appKey-app-key',
-  );
+  static final appKey = GlobalKey<NavigatorState>(debugLabel: 'appKey-app-key');
 }

@@ -1,8 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:data/src/source/product_data_source/product_ds.dart';
 import 'package:data/src/util/safe_api_call.dart';
 import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
+import 'package:twofold/twofold.dart';
 
 @Injectable(as: ProductRepository)
 class ProductRepositoryImpl implements ProductRepository {
@@ -11,7 +11,7 @@ class ProductRepositoryImpl implements ProductRepository {
   final ProductDataSource articleDataSource;
 
   @override
-  Future<Either<NetworkError, List<ProductModel>>> getArticles(
+  Future<Twofold<List<ProductModel>, NetworkError>> getArticles(
     Map<String, dynamic> queries,
   ) {
     return safeApiCall<List<ProductModel>>(
@@ -20,7 +20,7 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   @override
-  Future<Either<NetworkError, ProductModel>> getProductDetail(int id) {
+  Future<Twofold<ProductModel, NetworkError>> getProductDetail(int id) {
     return safeApiCall<ProductModel>(
       () => articleDataSource.getProductDetail(id),
     );

@@ -3,7 +3,7 @@ import 'package:flutter_bloc_architecture/core/base/base_widget/stateful/base_st
 import 'package:flutter_bloc_architecture/core/l10n/generated/l10n.dart';
 import 'package:flutter_bloc_architecture/src/home/home_screen.dart';
 import 'package:flutter_bloc_architecture/src/splash/bloc/splash_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreen extends BaseStatefulWidget<SplashBloc> {
@@ -25,27 +25,19 @@ class _SplashScreenState extends BasePageState<SplashBloc, SplashScreen>
       duration: const Duration(milliseconds: 1200),
     );
 
-    bloc.fadeAnimation =
-        Tween<double>(
-          begin: 0,
-          end: 1,
-        ).animate(
-          CurvedAnimation(
-            parent: bloc.animationController,
-            curve: const Interval(0, 0.6, curve: Curves.easeOut),
-          ),
-        );
+    bloc.fadeAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: bloc.animationController,
+        curve: const Interval(0, 0.6, curve: Curves.easeOut),
+      ),
+    );
 
-    bloc.slideAnimation =
-        Tween<double>(
-          begin: 30,
-          end: 0,
-        ).animate(
-          CurvedAnimation(
-            parent: bloc.animationController,
-            curve: const Interval(0.2, 0.8, curve: Curves.easeOutCubic),
-          ),
-        );
+    bloc.slideAnimation = Tween<double>(begin: 30, end: 0).animate(
+      CurvedAnimation(
+        parent: bloc.animationController,
+        curve: const Interval(0.2, 0.8, curve: Curves.easeOutCubic),
+      ),
+    );
 
     bloc.animationController.forward();
   }
@@ -155,10 +147,7 @@ class _SplashScreenState extends BasePageState<SplashBloc, SplashScreen>
   }
 
   void _navigateToHome() {
-    Navigator.pushReplacementNamed(
-      context,
-      HomeScreen.routeName,
-    );
+    Navigator.pushReplacementNamed(context, HomeScreen.routeName);
   }
 
   @override

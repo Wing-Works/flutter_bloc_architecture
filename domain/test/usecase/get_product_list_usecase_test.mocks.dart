@@ -5,11 +5,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
-import 'package:domain/src/model/error/network_error.dart' as _i4;
+import 'package:domain/src/model/error/network_error.dart' as _i6;
 import 'package:domain/src/model/product_list/product_model.dart' as _i5;
 import 'package:domain/src/repository/product_repository/product_repository.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i7;
+import 'package:twofold/twofold.dart' as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -35,28 +37,36 @@ class MockProductRepository extends _i1.Mock implements _i2.ProductRepository {
   }
 
   @override
-  _i3.Future<({_i4.NetworkError? left, List<_i5.ProductModel>? right})>
-  getArticles(Map<String, dynamic>? queries) =>
+  _i3.Future<_i4.Twofold<List<_i5.ProductModel>, _i6.NetworkError>> getArticles(
+    Map<String, dynamic>? queries,
+  ) =>
       (super.noSuchMethod(
             Invocation.method(#getArticles, [queries]),
             returnValue:
                 _i3.Future<
-                  ({_i4.NetworkError? left, List<_i5.ProductModel>? right})
-                >.value((left: null, right: null)),
+                  _i4.Twofold<List<_i5.ProductModel>, _i6.NetworkError>
+                >.value(
+                  _i7.dummyValue<
+                    _i4.Twofold<List<_i5.ProductModel>, _i6.NetworkError>
+                  >(this, Invocation.method(#getArticles, [queries])),
+                ),
           )
-          as _i3.Future<
-            ({_i4.NetworkError? left, List<_i5.ProductModel>? right})
-          >);
+          as _i3.Future<_i4.Twofold<List<_i5.ProductModel>, _i6.NetworkError>>);
 
   @override
-  _i3.Future<({_i4.NetworkError? left, _i5.ProductModel? right})>
-  getProductDetail(int? id) =>
+  _i3.Future<_i4.Twofold<_i5.ProductModel, _i6.NetworkError>> getProductDetail(
+    int? id,
+  ) =>
       (super.noSuchMethod(
             Invocation.method(#getProductDetail, [id]),
             returnValue:
                 _i3.Future<
-                  ({_i4.NetworkError? left, _i5.ProductModel? right})
-                >.value((left: null, right: null)),
+                  _i4.Twofold<_i5.ProductModel, _i6.NetworkError>
+                >.value(
+                  _i7.dummyValue<
+                    _i4.Twofold<_i5.ProductModel, _i6.NetworkError>
+                  >(this, Invocation.method(#getProductDetail, [id])),
+                ),
           )
-          as _i3.Future<({_i4.NetworkError? left, _i5.ProductModel? right})>);
+          as _i3.Future<_i4.Twofold<_i5.ProductModel, _i6.NetworkError>>);
 }

@@ -7,7 +7,7 @@ import 'package:flutter_bloc_architecture/src/home/bloc/home_bloc.dart';
 import 'package:flutter_bloc_architecture/src/home/widgets/item_card_widget.dart';
 import 'package:flutter_bloc_architecture/src/settings/settings_screen.dart';
 import 'package:flutter_bloc_architecture/src/widget/render/gap.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends BaseStatelessWidget<HomeBloc> {

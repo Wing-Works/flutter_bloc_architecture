@@ -1,7 +1,7 @@
-import 'package:dartz/dartz.dart';
 import 'package:data/src/source/preferences_data_source/preferences_local_ds.dart';
 import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
+import 'package:twofold/twofold.dart';
 
 @Injectable(as: PreferencesRepository)
 class PreferencesRepositoryImpl implements PreferencesRepository {
@@ -10,32 +10,32 @@ class PreferencesRepositoryImpl implements PreferencesRepository {
   final PreferencesLocalDataSource preferencesLocalDataSource;
 
   @override
-  Future<Either<DatabaseError, bool>> saveThemeMode(bool isDarkMode) async {
+  Future<Twofold<bool, DatabaseError>> saveThemeMode(bool isDarkMode) async {
     try {
       final result = await preferencesLocalDataSource.saveThemeMode(isDarkMode);
-      return right(result);
+      return Twofold.success(result);
     } catch (e) {
-      return left(DatabaseError(message: e.toString()));
+      return Twofold.error(DatabaseError(message: e.toString()));
     }
   }
 
   @override
-  Future<Either<DatabaseError, bool>> getThemeMode() async {
+  Future<Twofold<bool, DatabaseError>> getThemeMode() async {
     try {
       final result = await preferencesLocalDataSource.getThemeMode();
-      return right(result);
+      return Twofold.success(result);
     } catch (e) {
-      return left(DatabaseError(message: e.toString()));
+      return Twofold.error(DatabaseError(message: e.toString()));
     }
   }
 
   @override
-  Future<Either<DatabaseError, bool>> clearThemeMode() async {
+  Future<Twofold<bool, DatabaseError>> clearThemeMode() async {
     try {
       final result = await preferencesLocalDataSource.clearThemeMode();
-      return right(result);
+      return Twofold.success(result);
     } catch (e) {
-      return left(DatabaseError(message: e.toString()));
+      return Twofold.error(DatabaseError(message: e.toString()));
     }
   }
 }

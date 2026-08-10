@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:domain/src/model/error/network_error.dart';
 import 'package:domain/src/model/product_list/product_model.dart';
 import 'package:domain/src/repository/product_repository/product_repository.dart';
@@ -6,6 +5,7 @@ import 'package:domain/src/usecase/get_product_list/get_product_list_usecase.dar
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:twofold/twofold.dart';
 
 import 'get_product_list_usecase_test.mocks.dart';
 
@@ -60,18 +60,18 @@ void main() {
       () async {
         when(
           mockProductRepository.getArticles(testQueryMap),
-        ).thenAnswer((_) async => right(mockProductList));
+        ).thenAnswer((_) async => Twofold.success(mockProductList));
 
         final result = await useCase.execute(testParams);
 
-        result.fold(
-          (error) => fail('Expected Right but got Left with error: $error'),
-          (products) {
+        result.when(
+          onSuccess: (products) {
             expect(products, equals(mockProductList));
             expect(products.length, equals(2));
             expect(products[0].title, equals('Test Product 1'));
             expect(products[1].title, equals('Test Product 2'));
           },
+          onError: (error) => fail('Expected success but got error: $error'),
         );
 
         verify(mockProductRepository.getArticles(testQueryMap)).called(1);
@@ -84,15 +84,15 @@ void main() {
       () async {
         when(
           mockProductRepository.getArticles(testQueryMap),
-        ).thenAnswer((_) async => right(const <ProductModel>[]));
+        ).thenAnswer((_) async => Twofold.success(const <ProductModel>[]));
 
         final result = await useCase.execute(testParams);
 
-        result.fold(
-          (error) => fail('Expected Right but got Left with error: $error'),
-          (products) {
+        result.when(
+          onSuccess: (products) {
             expect(products, isEmpty);
           },
+          onError: (error) => fail('Expected success but got error: $error'),
         );
 
         verify(mockProductRepository.getArticles(testQueryMap)).called(1);
@@ -108,18 +108,18 @@ void main() {
 
       when(
         mockProductRepository.getArticles(testQueryMap),
-      ).thenAnswer((_) async => left(testError));
+      ).thenAnswer((_) async => Twofold.error(testError));
 
       final result = await useCase.execute(testParams);
 
-      result.fold(
-        (error) {
+      result.when(
+        onSuccess: (products) =>
+            fail('Expected error but got success with products: $products'),
+        onError: (error) {
           expect(error, equals(testError));
           expect(error.code, equals(500));
           expect(error.message, equals('Internal Server Error'));
         },
-        (products) =>
-            fail('Expected Left but got Right with products: $products'),
       );
 
       verify(mockProductRepository.getArticles(testQueryMap)).called(1);
@@ -134,14 +134,17 @@ void main() {
 
       when(
         mockProductRepository.getArticles(testQueryMap),
-      ).thenAnswer((_) async => left(testError));
+      ).thenAnswer((_) async => Twofold.error(testError));
 
       final result = await useCase.execute(testParams);
 
-      result.fold((error) {
-        expect(error, equals(testError));
-        expect(error.message, equals('No internet connection'));
-      }, (products) => fail('Expected Left but got Right'));
+      result.when(
+        onSuccess: (products) => fail('Expected error but got success'),
+        onError: (error) {
+          expect(error, equals(testError));
+          expect(error.message, equals('No internet connection'));
+        },
+      );
 
       verify(mockProductRepository.getArticles(testQueryMap)).called(1);
     });
@@ -153,7 +156,7 @@ void main() {
 
       when(
         mockProductRepository.getArticles(differentQueryMap),
-      ).thenAnswer((_) async => right(mockProductList));
+      ).thenAnswer((_) async => Twofold.success(mockProductList));
 
       await useCase.execute(differentParams);
 
@@ -170,14 +173,17 @@ void main() {
 
       when(
         mockProductRepository.getArticles(testQueryMap),
-      ).thenAnswer((_) async => left(notFoundError));
+      ).thenAnswer((_) async => Twofold.error(notFoundError));
 
       final result = await useCase.execute(testParams);
 
-      result.fold((error) {
-        expect(error.code, equals(404));
-        expect(error.message, equals('Products not found'));
-      }, (_) => fail('Expected Left but got Right'));
+      result.when(
+        onSuccess: (_) => fail('Expected error but got success'),
+        onError: (error) {
+          expect(error.code, equals(404));
+          expect(error.message, equals('Products not found'));
+        },
+      );
     });
   });
 

@@ -1,6 +1,6 @@
-import 'package:dartz/dartz.dart';
 import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
+import 'package:twofold/twofold.dart';
 
 @injectable
 class SaveThemeModeUseCase extends BaseUseCase<SaveThemeModeParams, void> {
@@ -9,7 +9,7 @@ class SaveThemeModeUseCase extends BaseUseCase<SaveThemeModeParams, void> {
   final PreferencesRepository _preferencesRepository;
 
   @override
-  Future<Either<DatabaseError, bool>> execute(
+  Future<Twofold<bool, DatabaseError>> execute(
     SaveThemeModeParams params,
   ) async {
     return _preferencesRepository.saveThemeMode(params.isDarkMode);

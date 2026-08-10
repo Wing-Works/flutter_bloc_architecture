@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_architecture/core/constant/color_constant.dart';
+import 'package:flutter_bloc_architecture/core/util/color_constant.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData get themeData {
@@ -28,9 +28,7 @@ ThemeData get themeData {
     ),
     cardTheme: CardThemeData(
       elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       color: Colors.white,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -39,9 +37,7 @@ ThemeData get themeData {
         foregroundColor: Colors.white,
         elevation: 2,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
     switchTheme: SwitchThemeData(
@@ -101,9 +97,7 @@ ThemeData get darkThemeData {
     ),
     cardTheme: CardThemeData(
       elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       color: ColorConstant.kSurfaceDarkColor,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -112,9 +106,7 @@ ThemeData get darkThemeData {
         foregroundColor: Colors.white,
         elevation: 2,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
     switchTheme: SwitchThemeData(
@@ -148,7 +140,4 @@ ThemeData get darkThemeData {
   );
 }
 
-const appBarTheme = AppBarTheme(
-  elevation: 0,
-  centerTitle: true,
-);
+const appBarTheme = AppBarTheme(elevation: 0, centerTitle: true);
